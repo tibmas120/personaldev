@@ -2,7 +2,7 @@
  * ToDoManager component
  * Provides ability to add/edit/remove todos for today
  * View finished or unfinished todos
- * @author Manish Choudhari
+ * @author Sambit Nayak
  * Modified Date 14/06/2021
  */
 
