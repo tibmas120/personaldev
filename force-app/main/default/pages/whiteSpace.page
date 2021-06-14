@@ -1,0 +1,59 @@
+<!-- Jonathan Hersh - jhersh@salesforce.com - 8/24/2009 -->
+
+<apex:page controller="whiteSpaceController" tabstyle="Account">
+
+<style type="text/css">
+    div#table {
+        width: 100%;
+        clear: both;
+    }
+    
+    td#cbox {
+        text-align: center;
+    }
+    
+    td#toprow {
+        border-bottom: 2px solid gray;
+    }
+</style>
+<apex:form id="form1">
+<apex:sectionheader title="White Space Analysis" subtitle="Parent Account: {!parentAcct.name}" />
+
+<apex:outputlink value="/{!parentAcct.id}">&laquo; Back to {!parentAcct.name}</apex:outputlink>
+<apex:pageblock title="System Message" rendered="{!if( LEN( error ) > 0, true, false )}">
+    {!error}
+</apex:pageblock>
+<apex:pageblock title="White Space Asset Map" rendered="{!if( LEN( error ) = 0, true, false )}">
+    <div id="table">
+        <table border="0" cellpadding="10" cellspacing="0">
+            <tr>
+                <td id="toprow"><strong>Account</strong></td>
+                <apex:repeat value="{!pfls}" var="pfl">
+                    <td id="toprow"><strong>{!pfl.product__r.name}</strong></td>
+                </apex:repeat>
+            </tr>
+            <apex:repeat value="{!trs}" var="row">
+                <tr>
+                    <td><apex:outputlink value="/{!row.a.id}">{!row.a.name}</apex:outputlink></td>
+                    <apex:repeat value="{!row.prods}" var="prod">
+                        <td id="cbox"><apex:inputtext value="{!inputValue1}" />
+                        <apex:inputtext value="{!inputValue2}" /></td> 
+                    </apex:repeat>
+                </tr>
+            </apex:repeat>
+            <apex:outputpanel id="counter">
+            <apex:actionSupport event="onclick" 
+                                action="{!Sumtotal}" 
+                                rerender="form1"/>
+            <tr>
+                <apex:outputPanel >
+                    Total: {!Total}
+                </apex:outputPanel>
+            </tr>
+            </apex:outputPanel>
+            
+        </table>    
+    </div>
+</apex:pageblock>
+</apex:form>
+</apex:page>

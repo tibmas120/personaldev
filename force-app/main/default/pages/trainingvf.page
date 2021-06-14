@@ -1,0 +1,6 @@
+<apex:page showheader="true" >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations SFDC</h1>
+  This is your new Page: trainingvf
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

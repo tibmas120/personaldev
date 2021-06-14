@@ -1,0 +1,32 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!--
+    	* Author: Cognizant 
+  		* Description: 	
+ 	-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+        
+    <aura:attribute name="recordId" type="String" default=""/> 
+       
+    <aura:registerEvent name="refresGAEvent" type="c:ESA_RefreshOWP"/>
+    <aura:dependency resource="markup://c:ESA_RefreshOWP" type="EVENT"/>
+
+    <!-- This is the reference of Modal window -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    			<lightning:card iconName="standard:opportunity" title= "New Opportunity Win Plan">
+    				<lightning:recordEditForm aura:id="edithomeform" objectApiName="Opportunity_Win_Plan_templates__c" onsuccess="{!c.performPostCreationTasks}">
+        				<lightning:messages />
+        				<div class="row">
+            				<lightning:inputField  fieldName="Customer_Reason_for_Taking_Action__c" aura:id="ESA_Appliance_EI__c"/>
+                			<lightning:inputField  fieldName="Date_1__c" aura:id="ESA_Gas_Appliance_Qty_EI__c"/>
+							<lightning:inputField  fieldName="Opportunity__c" value="{!v.recordId}" class="slds-hidden"/>
+            			</div> 
+        			</lightning:recordEditForm>
+        			<div class="slds-p-top--medium slds-align--absolute-center">
+        				<lightning:formattedText aura:id="errorGas" value="" class="slds-text-color_error" />
+        			</div>
+        			<lightning:layout horizontalAlign="center" class="slds-m-top_large">
+                        <lightning:button label="Cancel" title="Cancel" class="slds-m-top_medium" onclick="{!c.handleClose}"/>
+            			<lightning:button variant="brand" label="Save" title="Save" class="slds-m-top_medium" onclick="{!c.savenExit}" aura:id="SavenExit"/>
+        			</lightning:layout>
+    			</lightning:card>
+</aura:component>

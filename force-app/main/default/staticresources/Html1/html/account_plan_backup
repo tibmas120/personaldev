@@ -1,0 +1,1434 @@
+<apex:page standardController="Account" extensions="AccountPlan_Page_Extension" sidebar="false" showheader="false" standardStyleSheets="false">
+<meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<html>
+<head>
+<style>
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #e0e0e1;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: right;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 5px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: none;
+     cursor:pointer;
+}
+
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {
+    background-color: #f4bf2f;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    background-image: none;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+}
+        .activeTab {background-color: #f4bf2f; color:#333333; font-size: 12px; font-weight: bold; background-image:none;/*font-size:250%;*/} 
+        .inactiveTab { background-color: white; color:#acacac; font-size: 11px; font-weignt: normal; background-image:none}
+
+
+</style>
+    <title>Account Plan</title>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/bootstrap-datepicker3.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/bootstrap-datetimepicker.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/style.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/jquery-ui.css')}"/>
+
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/jquery-1.12.4.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/bootstrap-datepicker.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/bootstrap-datetimepicker.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/script.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/jquery-ui.js')}"/>
+</head>
+<body>
+
+    <div class="container-fluid padding-bottom100 grey-bg">
+    <apex:form styleClass="opp-win-form">
+        <apex:pagemessages />
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 columns">
+                    <h1 class="main-head">Account Plan</h1><apex:outputText rendered="{!acc.isNew__c}"><h2 style="font-size:15px; font-weight:bold;">Last Modified By: {!acc.Last_Modified_User__c}<br/>
+                        Last Modified Date: {!acc.Last_Modifed_Date_Time__c}</h2></apex:outputText>
+                </div>
+            </div>
+            <apex:commandLink value="Print" onclick="window.open('/apex/PrintAccountPlan_Page?id={!acc.id}');" styleClass="btn btn-primary"/>
+            <br/>
+            <br/>
+            <apex:actionStatus id="counterStatus" stopText="">
+                    <apex:facet name="start">
+                        <div>
+                            <div class="popupBackgroundStatus"/>
+                            <div class="PopupPanel">
+                                <table border="0" width="100%" height="100%">
+                                    <tr>
+                                        <td align="center"><b><font size="4">Please Wait</font></b></td>
+                                    </tr>
+                                    <tr>
+                                    <td align="center"><img src="/img/loading.gif" /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </apex:facet>
+            </apex:actionStatus>
+            <apex:pageBlock >
+            <ul class="tab">
+              <li><a href="javascript:void(0)" class="tablinks" id="Page3Tab" onclick="openCity(event, 'Page3')">Page3</a></li>
+              <li><a href="javascript:void(0)" class="tablinks" id="Page2Tab" onclick="openCity(event, 'Page2')">Page2</a></li>
+              <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Page1')" id="defaultOpen">Page1</a></li>
+            </ul> 
+            <div id="Page1" class="tabcontent">
+            <br/>
+            <div class="opp-win-section blue-bg account-blue">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="account-n" class="quest-head white-font">Account Name</label>
+                            <apex:inputText id="account-n" styleClass="form-control" value="{!Account.name}" disabled="true"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="account-owner" class="quest-head white-font">Account Owner</label>
+                            <apex:inputText id="account-owner" styleClass="form-control" value="{!Account.Owner.name}" disabled="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <label for="account-plan-year" class="quest-head white-font">Account Plan Year</label>
+                        <div class="form-group">
+                            <apex:inputText value="{!accountPlanYear}" styleClass="form-control" id="account-plan-year" disabled="true"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <label for="account-lifecycle-stage" class="quest-head white-font">Account Lifecycle Stage</label>
+                        <div class="form-group">
+                        <apex:inputfield styleClass="form-control" id="account-lifecycle-stage" value="{!acc.Account_Lifecycle_Stage__c}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <label for="position-completion" class="quest-head white-font">Position vs. Competition</label>
+                        <div class="form-group">
+                        <apex:inputfield styleClass="form-control" id="position-completion" value="{!acc.Position_vs_Competition__c}"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="account-type" class="quest-head white-font">Type of Account</label>
+                            <apex:inputText id="account-type" styleClass="form-control" value="{!acc.Account_Category__c}" disabled="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="revenue-growth" class="quest-head white-font">Revenue Growth Last Year (%)</label>
+                            <apex:inputfield id="revenue-growth" styleClass="form-control" value="{!acc.Revenue_Growth_Last_Year__c}"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="projected-growth" class="quest-head white-font">Projected Growth – Plan Year (%)</label>
+                            <apex:inputfield id="projected-growth" styleClass="form-control" value="{!acc.Projected_Growth_Plan_Year__c}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="asset-share" class="quest-head white-font">Equipment / Asset Share (%)</label>
+                            <apex:inputfield id="asset-share" styleClass="form-control" value="{!acc.Equipment_Asset_Share__c}"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="services-share" class="quest-head white-font">Services Share (%)</label>
+                            <apex:inputfield id="services-share" styleClass="form-control" value="{!acc.Services_Share__c}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <label for="account-satisfication" class="quest-head white-font">Account Satisfaction (1-10)</label>
+                        <div class="form-group">
+                        <apex:inputfield styleClass="form-control" id="account-satisfication" value="{!acc.Account_Satisfaction_1_10__c}"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="lead-service-tech" class="quest-head white-font">Lead Service Tech (as applicable)</label>
+                            <apex:inputfield id="lead-service-tech" styleClass="form-control" value="{!acc.Lead_Service_Tech_as_applicable__c}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="white-content account-white" style="margin-bottom:0px;">
+                <div class="form-group">
+                    <label for="account-overview-business" class="acc-label">Account Overview And Key Business Drivers, Initiatives &amp; Challenges</label>
+                    <apex:inputtextArea id="account-overview-business" value="{!acc.Account_Overview_and_Key_Business_Drive__c}"/>
+                    <span class="pull-right max-char">1000 Characters</span>
+                </div>
+                <div class="form-group">
+                    <label for="account-history" class="acc-label">Account History – Including Previous Issues And Perceptions</label>
+                    <apex:inputtextArea id="account-history" value="{!acc.Account_History_Including_Previous_Iss__c}"/>
+                    <span class="pull-right max-char">1000 Characters</span>
+                </div>
+                <div class="form-group">
+                    <label for="customer-buying-decision" class="acc-label">General Customer Buying And / Or Decision Making Process</label>
+                    <apex:inputtextArea id="customer-buying-decision" value="{!acc.General_Customer_Buying_and_or_Decision__c}"/>
+                    <span class="pull-right max-char">1000 Characters</span>
+                </div>
+            </div>
+            <script> touchAvailable = false; </script>
+            <footer class="sticky-footer">
+                <div class="col-xs-12 columns">
+                <div class="col-centered action-btns">
+                 <apex:commandButton action="{!SaveAccPlan}" value="Save" id="theButtonSavePage1" styleClass="btn btn-primary save-btn"/>
+                 <apex:commandButton action="{!cancel}" value="Cancel" id="theButtonCancelPage1" styleClass="btn btn-secondary"/>
+                </div>
+                <a href="#" ontouchstart="touchAvailable=true; openPage('Page2', 'Page2Tab')" onclick="if(!touchAvailable) openPage('Page2', 'Page2Tab')" class="btn btn-secondary pull-right next-btn tablinks" style="cursor: pointer;" >
+                    <i class="glyphicon glyphicon-menu-right visible-xs"></i>
+                    <span class="hidden-xs">Next</span>
+                </a> 
+             </div>
+            </footer>
+            </div>
+            <div id="Page2" class="tabcontent">
+            <br/>
+            <apex:outputPanel >
+            <div class="panel-group accordion" id="accordion4" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading13">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion4" href="#collapse13" aria-expanded="true" aria-controls="collapse13" class="text-none"><i class="acc-down"></i>
+                       SWOT <span> - Strengths, Weaknesses, Opportunities, Threats (Top 3-5)</span>
+                    </a>
+                        </h4>
+                    </div>
+                    <div id="collapse13" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading13">
+                        <div class="panel-body">
+                            <div class="panes clearfix">
+                                <div class="col-xs-12 col-sm-6 columns">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading sub-panel">Strengths (Capitalize)</div>
+                                        <div class="panel-body">
+                                            <apex:inputtextArea id="strengths" value="{!acc.Strengths_Capitalize__c}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 columns">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading sub-panel">Weaknesses (Improve)</div>
+                                        <div class="panel-body">
+                                            <apex:inputtextArea id="weakness" value="{!acc.Weaknesses_Improve__c}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panes clearfix">
+                                <div class="col-xs-12 col-sm-6 columns">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading sub-panel">Opportunities (Exploit)</div>
+                                        <div class="panel-body">
+                                            <apex:inputtextArea id="opportunities" value="{!acc.Opportunities_Exploit__c}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 columns">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading sub-panel">Threats (Mitigate)</div>
+                                        <div class="panel-body">
+                                            <apex:inputtextArea id="threats" value="{!acc.Threats_Mitigate__c}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading14">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion4" href="#collapse14" aria-expanded="true" aria-controls="collapse14" class="collapsed text-none"><i class="acc-down"></i>
+                        Goals &amp; Objectives
+                    </a>
+                        </h4>
+                    </div>
+                    <div id="collapse14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading14">
+                        <div class="panel-body">
+                            <div class="text-section">
+                                <div class="form-group">
+                                    <label for="main-account-goal" class="acc-label">Main Account Goal</label>
+                                    <apex:inputtextArea id="main-account-goal" value="{!acc.Main_Account_Goal__c}"/>
+                                    <span class="pull-right max-char">1000 Characters</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="acc-obj1" class="acc-label">Account Objective #1</label>
+                                    <apex:inputtextArea id="acc-obj1" value="{!acc.Account_Objective_1__c}"/>
+                                    <span class="pull-right max-char">1000 Characters</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="acc-obj2" class="acc-label">Account Objective #2</label>
+                                    <apex:inputtextArea id="acc-obj2" value="{!acc.Account_Objective_2__c}"/>
+                                    <span class="pull-right max-char">1000 Characters</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="acc-obj3" class="acc-label">Account Objective #3</label>
+                                    <apex:inputtextArea id="acc-obj3" value="{!acc.Account_Objective_3__c}"/>
+                                    <span class="pull-right max-char">1000 Characters</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <apex:outputPanel id="ActAndTacPanel">
+            <apex:variable value="{!0}" var="rowNum"/>
+            <div class="account-action-section table-section">
+                <h2 class="sub-head pull-left">Account Action Plan <span>(What actions do we need to take to execute on the goal and objectives?)</span></h2>
+                <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="ActAndTacPanel" id="theButtonAddNewRowAct" styleClass="text-none add-row pull-right top" style="font-size:14px;" oncomplete="addRow();">
+                    <apex:param value="Account_Action_Plan__c" name="addRowObjectName" />
+                <i class="plus-blue-icon"></i>
+                </apex:commandLink>
+                <table class="table table-striped table-bordered rwd-table" id="account-action-table">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Action</th>
+                            <th>Resource Needed</th>
+                            <th>Responsibility</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!lstAccActionPlanInner}" var="at">                    
+                        <tr class="tab-row">
+                            <td data-th="Action">
+                                <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="ActAndTacPanel">
+                                   <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                   <apex:param value="Account_Action_Plan__c" name="removeRowObjectName" />
+                                   <apex:param value="{!at.accActPlnId}" name="idToRemove" />
+                                </apex:commandLink>
+                                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                            </td>
+                            <td data-th="Action">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.accActPlanObj.Action__c}" styleClass="form-control" id="action"/>
+                                </div>
+                            </td>
+                            <td data-th="Resource Needed">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.accActPlanObj.Resources_Needed__c }" styleClass="form-control" id="resource-needed"/>
+                                </div>
+                            </td>
+                            <td data-th="Responsibility">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <apex:inputText value="{!at.accActPlanObj.Responsibility__c}" styleClass="form-control" id="resp"/>
+                                        <div class="input-group-btn search-btn">
+                                            <apex:commandLink action="{!showPopup}" rerender="IREmployeeLookup" status="counterStatus" styleClass="btn btn-default">
+                                                    <apex:param name="Obj" value="IREmployee" assignTo="{!objName}" />
+                                                    <apex:param name="rowIndex" value="{!at.rowNumber}" assignTo="{!rowFromVF}"/>
+                                                    <apex:param value="{!at.accActPlnId}" name="idForLookup" assignTo="{!idForLookup}"/>
+                                            <i class="glyphicon glyphicon-search"></i>
+                                            </apex:commandLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                           <td data-th="Due Date" >
+                                <div class="form-group" display="none">
+                                    <div class="input-group date datepick">
+                                        <apex:inPutText value="{!at.accActPlanObj.Due_Date__c}" styleClass="form-control" id="due-date" html-placeholder="MM/DD/YYYY"/>
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </td> 
+                            
+                        </tr>                    
+                    </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+            </apex:outputPanel>
+            <apex:outputPanel id="IRAcctTeamPanel">
+                <apex:variable value="{!0}" var="rowNum"/>
+                    <div class="ir-account-section table-section">
+                        <h2 class="sub-head pull-left">IR Account Team <span>(Who is on the account team?)</span></h2>
+                            <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="IRAcctTeamPanel" id="theButtonAddNewRowIRAct" styleClass="text-none add-row pull-right top" oncomplete="addRow();">
+                                    <apex:param value="IR_Account_Team__c" name="addRowObjectName" />
+                            <i class="plus-blue-icon"></i>
+                            </apex:commandLink>
+                            <table class="table table-striped table-bordered rwd-table" id="ir-account-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Reports To</th>
+                                        <th>Role on Account</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!lstIRAccTeamInner}" var="at">                                
+                                    <tr class="tab-row">
+                                        <td data-th="Action">
+                                            <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="IRAcctTeamPanel">
+                                               <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                               <apex:param value="IR_Account_Team__c" name="removeRowObjectName" />
+                                               <apex:param value="{!at.irAccTeamId}" name="idToRemove" />
+                                            </apex:commandLink>
+                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                        </td>
+                                        <td data-th="Name">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <apex:inputText value="{!at.irAccPlanObj.Name__c}" styleClass="form-control" id="ir-name"/>
+                                                    <div class="input-group-btn search-btn">
+                                                        <apex:commandLink action="{!showPopup}" rerender="IRAccountTeamLookup" status="counterStatus" styleClass="btn btn-default">
+                                                                <apex:param name="Obj" value="IRAccountTeam" assignTo="{!objName3}" />
+                                                                <apex:param name="rowIndex5" value="{!at.rowNumber5}" assignTo="{!rowFromVF5}"/>
+                                                                <apex:param value="{!at.irAccTeamId}" name="idForLookup" assignTo="{!idForLookup}"/>
+                                                        <i class="glyphicon glyphicon-search"></i>
+                                                        </apex:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Title">
+                                            <div class="form-group">
+                                                <apex:inputText styleClass="form-control" id="ir-title" value="{!at.irAccPlanObj.Title__c}" disabled="true"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="Reports To">
+                                            <div class="form-group">
+                                                <apex:inputText styleClass="form-control" id="reports-to" value="{!at.irAccPlanObj.Reports_To__c}" disabled="true"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="Role on Account">
+                                            <div class="form-group">
+                                                <apex:selectList id="role-on-account" value="{!at.irAccPlanObj.Role_on_Account__c}" multiselect="false" size="1" styleClass="form-control">
+                                                    <apex:selectOptions value="{!RoleOnAccount}"/>
+                                                </apex:selectList>
+                                            </div>
+                                        </td>
+                                    </tr>                                
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                    </div>
+                </apex:outputPanel>
+
+                <apex:outputPanel id="KeyCustomerIniPanel">
+                    <apex:variable value="{!0}" var="rowNum"/>
+                        <div class="key-customer-section table-section">
+                            <h2 class="sub-head pull-left">Key Customer Initiatives <span>(What is important to the customer?)</span></h2>
+                            <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="KeyCustomerIniPanel" id="theButtonAddNewRowKeyCust" styleClass="text-none add-row pull-right top" oncomplete="addRow();">
+                                <apex:param value="Key_Customer_Initiatives__c" name="addRowObjectName" />
+                            <i class="plus-blue-icon"></i>
+                            </apex:commandLink>
+                            <table class="table table-striped table-bordered rwd-table" id="key-customer-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Initiative Name</th>
+                                        <th>Customer Decision Maker</th>
+                                        <th>Initiative Objectives / Metrics</th>
+                                        <th>IR Potential Linkage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!lstKeyCustomerInitiativeInner}" var="at">                                
+                                    <tr class="tab-row">
+                                        <td data-th="Action">
+                                            <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="KeyCustomerIniPanel">
+                                               <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                               <apex:param value="Key_Customer_Initiatives__c" name="removeRowObjectName" />
+                                               <apex:param value="{!at.keycustiniId}" name="idToRemove" />
+                                            </apex:commandLink>
+                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                        </td>
+                                        <td data-th="Initiative Name">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.keyCustIniObj.Initiative_Name__c}" styleClass="form-control" id="initiative-name"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="Customer Decision Maker">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <apex:inputText value="{!at.keyCustIniObj.Customer_Decision_Maker__c}" styleClass="form-control" id="cust-decision-maker"/>
+                                                    <div class="input-group-btn search-btn">
+                                                        <apex:commandLink action="{!showPopup}" styleClass="btn btn-default" rerender="KeyInicontactNameLookup" status="counterStatus">
+                                                                <apex:param name="Obj" value="KeyCustomerInitiative" assignTo="{!objName4}" />
+                                                                <apex:param name="rowIndex1" value="{!at.rowNumber1}" assignTo="{!rowFromVF1}"/>
+                                                                <apex:param value="{!at.keycustiniId}" name="idForLookup" assignTo="{!idForLookup}"/>
+                                                        <i class="glyphicon glyphicon-search"></i>
+                                                        </apex:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Initiative Objectives / Metrics">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.keyCustIniObj.Initiative_Objectives_Metrics__c}" styleClass="form-control" id="init-obj-metrics"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="IR Potential Linkage">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.keyCustIniObj.IR_Potential_Linkage__c}" styleClass="form-control" id="ir-potential-linkage"/>
+                                            </div>
+                                        </td>
+                                    </tr>                                
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel id="KeyAcctContactPanel">
+                    <apex:variable value="{!0}" var="rowNum"/>
+                        <div class="key-accounts-section table-section">
+                            <h2 class="sub-head pull-left">Key Account Contacts <span>(Who do we know in the account?)</span></h2>
+                            <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="KeyAcctContactPanel" id="theButtonAddNewRowKeyAct" styleClass="text-none add-row pull-right top" oncomplete="addRow();">
+                                <apex:param value="Key_Account_Contacts__c" name="addRowObjectName" />
+                                <i class="plus-blue-icon"></i>
+                            </apex:commandLink>
+                            <table class="table table-striped table-bordered rwd-table" id="key-accounts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Contact Name</th>
+                                        <th>Title</th>
+                                        <th>Role</th>
+                                        <th>Relationship Strength</th>
+                                        <th>IR Relationship Owner</th>
+                                        <th>IR Relationship Strategy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!lstKeyAccountContactsInner}" var="at">                                                                   
+                                    <tr class="tab-row">
+                                        <td data-th="Action">
+                                            <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="KeyAcctContactPanel">
+                                               <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                               <apex:param value="Key_Account_Contacts__c" name="removeRowObjectName" />
+                                               <apex:param value="{!at.keyaccconId}" name="idToRemove" />
+                                            </apex:commandLink>
+                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                        </td>
+                                        <td data-th="Contact Name">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <apex:inputText value="{!at.keyAccConObj.Contact_Name__c}" styleClass="form-control" id="key-contact-name"/>
+                                                    <div class="input-group-btn search-btn">
+                                                        <apex:commandLink action="{!showPopup}" styleClass="btn btn-default" rerender="contactNameLookup" status="counterStatus">
+                                                                <apex:param name="Obj" value="KeyAccountContact" assignTo="{!objName}" />
+                                                                <apex:param name="rowIndex2" value="{!at.rowNumber2}" assignTo="{!rowFromVF2}"/>
+                                                                <apex:param value="{!at.keyaccconId}" name="idForLookup" assignTo="{!idForLookup}"/>
+                                                        <i class="glyphicon glyphicon-search"></i>
+                                                        </apex:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="Title">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.keyAccConObj.Title__c}" styleClass="form-control" id="key-title" disabled="true"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="Role">
+                                            <div class="form-group">
+                                                <apex:inputText value="{!at.keyAccConObj.Role__c}" styleClass="form-control" id="key-account-role" disabled="true"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="Relationship Strength">
+                                            <div class="form-group">
+                                                <apex:selectList id="rel-strength" value="{!at.keyAccConObj.Relationship_Strength__c}" multiselect="false" size="1" styleClass="form-control">
+                                                  <apex:selectOptions value="{!RelationshipStrength}"/>
+                                                </apex:selectList>
+                                            </div>
+                                        </td>
+                                        <td data-th="IR Relationship Owner">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <apex:inputText value="{!at.keyAccConObj.IR_Relationship_Owner__c}" styleClass="form-control" id="rel-owner"/>
+                                                    <div class="input-group-btn search-btn">
+                                                        <apex:commandLink action="{!showPopup}" styleClass="btn btn-default" rerender="IROwnerLookup" status="counterStatus">
+                                                                <apex:param name="Obj" value="KeyAccountContact" assignTo="{!objName1}" />
+                                                                <apex:param name="rowIndex3" value="{!at.rowNumber3}" assignTo="{!rowFromVF3}"/>
+                                                                <apex:param value="{!at.keyaccconId}" name="idForLookup" assignTo="{!idForLookup}"/>
+                                                        <i class="glyphicon glyphicon-search"></i>
+                                                        </apex:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-th="IR Relationship Strategy">
+                                            <apex:inPutText value="{!at.keyAccConObj.IR_Relationship_Strategy__c}" styleClass="form-control" id="rel-strategy"/>
+                                        </td>
+                                    </tr>                               
+                                </apex:repeat>
+                                 </tbody>
+                            </table>
+                        </div>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel id="TopCompAcctPanel">
+                    <apex:variable value="{!0}" var="rowNum"/>
+                        <div class="top-competitors-section table-section">
+                            <h2 class="sub-head pull-left">Top Competitors in Account <span>(Are there other competitors in the account?)</span></h2>
+                            <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="TopCompAcctPanel" id="theButtonAddNewRowTopCompAcct" styleClass="text-none add-row pull-right top" oncomplete="addRow();">
+                                <apex:param value="Top_Competitors_in_Account__c" name="addRowObjectName" />
+                                <i class="plus-blue-icon"></i>
+                            </apex:commandLink>
+                            <table class="table table-striped table-bordered rwd-table" id="top-competitors-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Competitor Name</th>
+                                        <th>Strengths</th>
+                                        <th>Weakness</th>
+                                        <th>IR Strategy Against Them</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!lstTopCompetitorsInAccountInner}" var="at">                                
+                                    <tr class="tab-row">
+                                        <td data-th="Action">
+                                            <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="TopCompAcctPanel">
+                                               <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                               <apex:param value="Top_Competitors_in_Account__c" name="removeRowObjectName" />
+                                               <apex:param value="{!at.topcomaccId}" name="idToRemove" />
+                                            </apex:commandLink>
+                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                        </td>
+                                        <td data-th="Competitor Name">
+                                            <div class="form-group">
+                                                <apex:selectList id="competitor-name" value="{!at.topCompObj.Competitor_Name__c}" multiselect="false" size="1" styleClass="form-control">
+                                                    <apex:selectOptions value="{!CompetitorNames}"/>
+                                                </apex:selectList>
+                                            </div>
+                                        </td>
+                                        <td data-th="Strengths">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.topCompObj.Strengths__c}" styleClass="form-control" id="competitor-strengths"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="Weakness">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.topCompObj.Weaknesses__c}" styleClass="form-control" id="competitor-weakness"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="IR Strategy Against Them">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.topCompObj.IR_Strategy_Against_Them__c}" styleClass="form-control" id="ir-against-strategy"/>
+                                            </div>
+                                        </td>
+                                    </tr>                                
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </apex:outputPanel>
+                     <script> touchAvailable = false; </script>
+            <footer class="sticky-footer">
+                <div class="col-xs-12 columns">
+                    <a href="#" ontouchstart="touchAvailable=true; openPage('Page1', 'Page1Tab')" onclick="if(!touchAvailable) openPage('Page1', 'Page1Tab')" class="btn btn-secondary pull-left prev-btn tablinks" style="cursor: pointer;">
+                         <i class="glyphicon glyphicon-menu-left visible-xs"></i>
+                         <span class="hidden-xs">Back</span>
+                     </a>
+                    <div class="col-centered action-btns">
+                        <apex:commandButton action="{!SaveAccPlan}" value="Save" id="theButtonSavePage2" styleClass="btn btn-primary save-btn"/>
+                        <apex:commandButton action="{!cancel}" value="Cancel" id="theButtonCancelPage2" styleClass="btn btn-secondary"/>
+                    </div>
+                    <a href="#" ontouchstart="touchAvailable=true; openPage('Page3', 'Page3Tab')" onclick="if(!touchAvailable) openPage('Page3', 'Page3Tab')" class="btn btn-secondary pull-right next-btn tablinks" style="cursor: pointer;">
+                        <i class="glyphicon glyphicon-menu-right visible-xs"></i>
+                        <span class="hidden-xs">Next</span>
+                    </a>
+                </div>
+            </footer>
+        </apex:outputPanel>
+        </div>
+        <div id="Page3" class="tabcontent">
+        <br/>
+                    <apex:outputPanel id="CommonPartnersPanel">
+                    <apex:variable value="{!0}" var="rowNum"/>
+                        <div class="common-partners-section table-section">
+                            <h2 class="sub-head pull-left">Common Partners in Account <span>(Does IR have any common partners in the account, including other IR SBUs?)</span></h2>
+                            <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="CommonPartnersPanel" id="theButtonAddNewRowCommomPart" styleClass="text-none add-row pull-right top" oncomplete="addRow();">
+                                <apex:param value="Common_Partners_in_Account__c" name="addRowObjectName" />
+                            <i class="plus-blue-icon"></i>
+                            </apex:commandLink>
+                            <table class="table table-striped table-bordered rwd-table" id="common-partners-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Partner Name</th>
+                                        <th>Partner Type</th>
+                                        <th>IR Status with Partner</th>
+                                        <th>IR’s Partner Strategy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!lstCommonPartnersInAccountInner}" var="at">                                
+                                    <tr class="tab-row">
+                                        <td data-th="Action">
+                                            <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="CommonPartnersPanel">
+                                               <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                               <apex:param value="Common_Partners_in_Account__c" name="removeRowObjectName" />
+                                               <apex:param value="{!at.compartaccId}" name="idToRemove" />
+                                            </apex:commandLink>
+                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                        </td>
+                                        <td data-th="Partner Name">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.commPartAccObj.Partner_Name__c}" styleClass="form-control" id="partner-name"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="Partner Type">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.commPartAccObj.Partner_Type__c}" styleClass="form-control" id="partner-type"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="IR Status with Partner">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.commPartAccObj.IR_Status_with_Partner__c}" styleClass="form-control" id="ir-status-partner"/>
+                                            </div>
+                                        </td>
+                                        <td data-th="IR’s Partner Strategy">
+                                            <div class="form-group">
+                                                <apex:inPutText value="{!at.commPartAccObj.IR_s_Partner_Strategy__c}" styleClass="form-control" id="ir-partner-strategy"/>
+                                            </div>
+                                        </td>
+                                    </tr>                                
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel id="ActWinLossPanel">
+        <apex:variable value="{!0}" var="rowNum"/>
+            <div class="account-winslosses-section table-section">
+                <h2 class="sub-head pull-left">Account Wins &amp; Losses <span>(What can IR learn from account wins and losses?)</span></h2>
+                <table class="table table-striped table-bordered rwd-table read-only-table" id="account-winslosses-table">
+                    <thead>
+                        <tr>
+                            <th style="width:500px;">Opportunity Name</th>
+                            <th>Outcome</th>
+                            <th>Competitor(s)</th>
+                            <th>Win / Loss Drivers &amp; Lessons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!opty1}" var="at">                    
+                        <tr>
+                            <td data-th="Opportunity Name">
+                                <div class="form-group">
+                                    <apex:inputText value="{!at.name}" styleClass="form-control" id="winloss-op-name" disabled="true"/>
+                                </div>
+                            </td>
+                            <td data-th="Outcome">
+                                <div class="form-group">
+                                    <apex:inputText value="{!at.StageName}" styleClass="form-control" id="outcome" disabled="true"/>
+                                </div>
+                            </td>
+                            <td data-th="Competitor(s)">
+                                <div class="form-group">
+                                    <apex:inputText value="{!at.Competitors__c}" styleClass="form-control" id="acc-competitors" disabled="true"/>
+                                </div>
+                            </td>
+                            <td data-th="Win / Loss Drivers & Lessons">
+                                <div class="form-group">
+                                    <apex:inputText value="{!at.Win_Loss_Drivers_Lessons__c}" styleClass="form-control" id="winloss-drivers-lessons"/>
+                                </div>
+                            </td>
+                        </tr>                    
+                    </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </apex:outputPanel>
+
+        <apex:outputPanel id="CurrentCustProjPanel">
+        <apex:variable value="{!0}" var="rowNum"/>
+            <div class="current-cust-projects-section table-section">
+                <h2 class="sub-head pull-left">Current Customer Projects or Jobs <span>(What is the status of current jobs or projects [IR and non-IR] in the account?)</span></h2>
+                <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="CurrentCustProjPanel" id="theButtonAddNewRowCurCustProj" styleClass="text-none add-row pull-right top" oncomplete="addRow();">
+                    <apex:param value="Current_Customer_Projects_or_Jobs__c" name="addRowObjectName" />
+                <i class="plus-blue-icon"></i>
+                </apex:commandLink>
+                <table class="table table-striped table-bordered rwd-table" id="current-customer-projects-table">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Project / Job</th>
+                            <th>Start Date</th>
+                            <th>Expected Completion Date</th>
+                            <th>Current Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!lstCurrentCustomerProjectsOrJobsInner}" var="at">                    
+                        <tr class="tab-row">
+                            <td data-th="Action">
+                                <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="CurrentCustProjPanel">
+                                   <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                   <apex:param value="Current_Customer_Projects_or_Jobs__c" name="removeRowObjectName" />
+                                   <apex:param value="{!at.curcustproId}" name="idToRemove" />
+                                </apex:commandLink>
+                                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                            </td>
+                            <td data-th="Project / Job">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.currCustProObj.Project_Job__c}" styleClass="form-control" id="project-job"/>
+                                </div>
+                            </td>
+                            <td data-th="Start Date">
+                                <div class="form-group">
+                                    <div class="input-group date datepick">
+                                        <apex:inPutText value="{!at.currCustProObj.Start_Date__c}" styleClass="form-control" id="project-start-date" html-placeholder="MM/DD/YYYY"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Expected Completion Date">
+                                <div class="form-group">
+                                    <div class="input-group date datepick">
+                                        <apex:inPutText value="{!at.currCustProObj.Expected_Completion_Date__c}" styleClass="form-control" id="exp-completion-date" html-placeholder="MM/DD/YYYY"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Current Status">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.currCustProObj.Current_Status__c}" styleClass="form-control" id="project-current-status"/>
+                                </div>
+                            </td>
+                        </tr>                    
+                    </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </apex:outputPanel>
+
+        <apex:outputPanel id="ActiveSalesOppPanel">
+        <apex:variable value="{!0}" var="rowNum"/>
+            <div class="active-sales-section table-section">
+                <h2 class="sub-head pull-left">Active Sales Opportunities in the Account <span>(What is the status of our current sales opportunities?)</span></h2>
+                <table class="table table-striped table-bordered rwd-table read-only-table" id="active-sales-table">
+                    <thead>
+                        <tr>
+                            <th style="width:500px;">Opportunity Name</th>
+                            <th>Opportunity Amount</th>
+                            <th>Sales Stage</th>
+                            <th>Estimated Close Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!opty2}" var="at">                    
+                        <tr>
+                            <td data-th="Opportunity Name">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.name}" styleClass="form-control" id="sales-opp-name" disabled="true"/>
+                                </div>
+                            </td>
+                            <td data-th="Opportunity Amount">
+                                <div class="form-group">
+                                    <apex:outputText value="{0, number, currency}" styleClass="form-control" id="sales-opp-amount" style="cursor: not-allowed;background-color: #eee;opacity: 1;">
+                                      <apex:param value="{!at.Amount}" />
+                                    </apex:outputText>
+                                </div>
+                            </td>
+                            <td data-th="Sales Stage">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.StageName}" styleClass="form-control" id="sales-stage" disabled="true"/>
+                                </div>
+                            </td>
+                            <td data-th="Estimated Close Date">
+                               <div class="form-group">
+                                    <apex:inPutText value="{!at.CloseDate__c}" styleClass="form-control" id="est-close-date" disabled="true"/>
+                                </div>
+                            </td>
+                        </tr>                    
+                    </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </apex:outputPanel>
+
+        <apex:outputPanel id="PotFutOppPanel">
+        <apex:variable value="{!0}" var="rowNum"/>
+            <div class="future-opportunities-section table-section">
+                <h2 class="sub-head pull-left">Potential (Future) Opportunities in the Account <span>(What are some future opportunities in the account?)</span></h2>
+                <apex:commandLink value="Add Row" action="{!addNewRow}" rerender="PotFutOppPanel" id="theButtonAddNewRowPotFutOpp" styleClass="text-none add-row pull-right top" oncomplete="addRow();">
+                    <apex:param value="Potential_Future_Opportunities_in_the__c" name="addRowObjectName"/>
+                 <i class="plus-blue-icon"></i>
+                </apex:commandLink>
+                <table class="table table-striped table-bordered rwd-table" id="top-competitors-table">
+                    <thead>
+                        <tr class="tab-row">
+                            <th>Action</th>
+                            <th>Opportunity</th>
+                            <th>Decision Maker</th>
+                            <th>Potential $ Size</th>
+                            <th>Estimated Timing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!lstPotentialFutureOpportunitiesInner}" var="at">                    
+                        <tr>
+                            <td data-th="Action">
+                                <apex:commandLink styleClass="delete-row" action="{!removeNewRow}" rerender="PotFutOppPanel">
+                                   <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                   <apex:param value="Potential_Future_Opportunities_in_the__c" name="removeRowObjectName"/>
+                                   <apex:param value="{!at.potfutoppId}" name="idToRemove" />
+                                </apex:commandLink>
+                                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                            </td>
+                            <td data-th="Opportunity">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.potFutOppObj.Opportunity__c}" styleClass="form-control" id="future-opportunity"/>
+                                </div>
+                            </td>
+                            <td data-th="Decision Maker">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                    <apex:inputText value="{!at.potFutOppObj.Decision_Maker__c}" styleClass="form-control" id="future-decision-maker"/>
+                                    <div class="input-group-btn search-btn">
+                                        <apex:commandLink action="{!showPopup}" rerender="DecisionMakerLookup" status="counterStatus" styleClass="btn btn-default">
+                                                <apex:param name="Obj" value="PotFutureOpp" assignTo="{!objName2}" />
+                                                <apex:param name="rowIndex4" value="{!at.rowNumber4}" assignTo="{!rowFromVF4}"/>
+                                                <apex:param value="{!at.potfutoppId}" name="idForLookup" assignTo="{!idForLookup}"/>
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        </apex:commandLink>
+                                    </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Potential $ Size">
+                                <div class="form-group">
+                                    <apex:inPutText value="{!at.potFutOppObj.Potential_Size__c}" styleClass="form-control" id="potential-size"/>
+                                </div>
+                            </td>
+                            <td data-th="Estimated Timing">
+                                <div class="form-group">
+                                    <div class="input-group date close-datepick">
+                                        <apex:inPutText value="{!at.potFutOppObj.Estimated_Timing__c}" styleClass="form-control" id="est-timing"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>                    
+                    </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </apex:outputPanel>
+
+        <div class="white-content" style="margin-bottom:0px;">
+             <div class="row">
+                 <div class="attendees-section">
+                        <div class="form-group col-xs-12 col-sm-8 columns">
+                        <label for="sales-feedback" class="acc-label" style="font-weight:bold;">Sales Manager / Leader Feedback</label>
+                        <apex:inputTextarea value="{!acc.Sales_Manager_Leader_Feedback__c}" id="sales-feedback"/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-4 columns">
+                        <label for="feedback-date-time" class="acc-label" style="font-weight:bold;">Feedback Date</label>
+                        <div class="input-group date datepick">
+                            <apex:inputText styleClass="form-control" id="feedback-date-time" value="{!acc.Feedback_Date_Time__c}" html-placeholder="MM/DD/YYYY"/>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                 </div>
+             </div>
+             </div>
+        </div>
+         <script> touchAvailable = false; </script>
+        <footer class="sticky-footer">
+            <div class="col-xs-12 columns">
+                <a href="javascript:void(0)" ontouchstart="touchAvailable=true; openPage('Page2', 'Page2Tab')" onclick="if(!touchAvailable)  openPage('Page2', 'Page2Tab')" class="btn btn-secondary pull-left prev-btn tablinks" style="cursor: pointer;">
+                     <i class="glyphicon glyphicon-menu-left visible-xs"></i>
+                     <span class="hidden-xs">Back</span>
+                </a>
+                <div class="col-centered action-btns">
+                    <apex:commandButton action="{!SaveAccPlan}" value="Save" id="theButtonSavePage3" styleClass="btn btn-primary save-btn"/>
+                    <apex:commandButton action="{!cancel}" value="Cancel" id="theButtonCancelPage3" styleClass="btn btn-secondary"/>
+                </div>
+            </div>
+        </footer>
+        </div>
+        </apex:pageBlock>
+<apex:outputPanel id="IREmployeeLookup">
+            <apex:outputPanel styleClass="popupBackground" rendered="{!displayEmployeePopup}"/>
+            <apex:outputPanel styleClass="custPopup" rendered="{!displayEmployeePopup}">
+            <div class="lookup-content">
+                <h2 class="sub-head"><apex:outputText Value="Employee Lookup"/></h2>
+                <div class="lookup-search">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-6 columns">
+                              <div class="input-group">
+                                  <apex:inputText id="IREmployeeSearchOrg" value="{!searchString}" styleClass="form-control" />
+                                  <div class="input-group-btn search-btn look-btn">
+                                      <apex:commandButton id="btnGoIREmployeeOrg" value="Go!" action="{!searchRecord}" rerender="IREmployeeLookup" styleClass="btn btn-default"/>
+                                  </div>
+                              </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="lookup-tab-section">
+                    <apex:pageBlock id="filIREmployeeOrg">
+                        <apex:pagemessages />
+                        <div class="row">
+                            <div class="col-xs-12 columns overflow">
+                                <table class="table table-striped table-bordered" id="look-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!allemployees}" var="item" id="searchIREmployeeResults">                           
+                                    <tr class="tab-row">
+                                        <td>
+                                       <apex:commandLink value="{!item.name}" action="{!getId}" reRender="IREmployeeLookup,ActAndTacPanel" status="counterStatus" oncomplete="addRow();">
+                                    
+                                        <!--<apex:commandLink value="{!item.name}" action="{!getId}" reRender="ActAndTacPanel" status="counterStatus">-->
+                                            <apex:param name="selectedEmployeeId"
+                                            value="{!item.Id}"
+                                            assignTo="{!selectedEmployeeId}"/>
+                                            <apex:param name="selectedEmployeeName"
+                                            value="{!item.name}"
+                                            assignTo="{!selectedEmployeeName}"/>
+                                        </apex:commandLink>
+                                        </td>
+                                    </tr>                           
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>  
+                    </apex:pageBlock>
+                    <div class="col-xs-12 columns">
+                        <div class="col-centered action-btns">
+                            <apex:commandButton value="Close Popup" action="{!closePopup}" rerender="IREmployeeLookup" styleClass="btn btn-secondary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+          </apex:outputPanel>
+</apex:outputPanel>
+<apex:outputPanel id="IRAccountTeamLookup">
+            <apex:outputPanel styleClass="popupBackground" rendered="{!displayIRAccountPopup}"/>
+            <apex:outputPanel styleClass="custPopup" rendered="{!displayIRAccountPopup}">
+            <div class="lookup-content">
+                <h2 class="sub-head"><apex:outputText Value="Employee Lookup"/></h2>
+                <div class="lookup-search">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-6 columns">
+                              <div class="input-group">
+                                  <apex:inputText id="IRAccountSearchOrg" value="{!searchString}" styleClass="form-control" />
+                                  <div class="input-group-btn search-btn look-btn">
+                                      <apex:commandButton id="btnGoIRAccountOrg" value="Go!" action="{!searchRecord}" rerender="IRAccountTeamLookup" styleClass="btn btn-default"/>
+                                  </div>
+                              </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="lookup-tab-section">
+                    <apex:pageBlock id="filIRAccountOrg">
+                        <apex:pagemessages />
+                        <div class="row">
+                            <div class="col-xs-12 columns overflow">
+                                <table class="table table-striped table-bordered" id="look-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!allIRAccount}" var="item" id="searchIRAccountResults">                            
+                                    <tr class="tab-row">
+                                        <td>
+                                        <apex:commandLink value="{!item.name}" action="{!getId}" reRender="IRAccountTeamLookup,IRAcctTeamPanel" status="counterStatus">
+                                            <apex:param name="selectedEmployeeId"
+                                            value="{!item.Id}"
+                                            assignTo="{!selectedEmployeeId}"/>
+                                            <apex:param name="selectedIREmployeeName"
+                                            value="{!item.name}"
+                                            assignTo="{!selectedIREmployeeName}"/>
+                                        </apex:commandLink>
+                                        </td>
+                                    </tr>                           
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>  
+                    </apex:pageBlock>
+                    <div class="col-xs-12 columns">
+                        <div class="col-centered action-btns">
+                            <apex:commandButton value="Close Popup" action="{!closePopup}" rerender="IRAccountTeamLookup" styleClass="btn btn-secondary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+          </apex:outputPanel>
+</apex:outputPanel>
+<apex:outputPanel id="KeyInicontactNameLookup">
+            <apex:outputPanel styleClass="popupBackground" rendered="{!displayCustomerNamePopup}"/>
+            <apex:outputPanel styleClass="custPopup" rendered="{!displayCustomerNamePopup}">
+            <div class="lookup-content">
+                <h2 class="sub-head"><apex:outputText Value="Contact Lookup"/></h2>
+                <div class="lookup-search">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-6 columns">
+                              <div class="input-group">
+                                  <apex:inputText id="txtcustomerOrg" value="{!searchString}" styleClass="form-control" />
+                                  <div class="input-group-btn search-btn look-btn">
+                                      <apex:commandButton id="btnGoCustomerOrg" value="Go!" action="{!searchRecord}" rerender="KeyInicontactNameLookup" styleClass="btn btn-default"/>
+                                  </div>
+                              </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="lookup-tab-section">
+                    <apex:pageBlock id="filCustomerOrg">
+                        <apex:pagemessages />
+                        <div class="row">
+                            <div class="col-xs-12 columns overflow">
+                                <table class="table table-striped table-bordered" id="look-table">
+                                <thead>
+                                    <tr>
+                                        <th>Contact Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!allCust}" var="item" id="searchCustomerResults">                          
+                                    <tr class="tab-row">
+                                        <td>
+                                        <apex:commandLink value="{!item.name}" action="{!getId}" reRender="KeyInicontactNameLookup,KeyCustomerIniPanel" status="counterStatus">
+                                            <apex:param name="selectedContactId"
+                                            value="{!item.Id}"
+                                            assignTo="{!selectedContactId}"/>
+                                            <apex:param name="selectedCustomerName"
+                                            value="{!item.name}"
+                                            assignTo="{!selectedCustomerName}"/>
+                                        </apex:commandLink>
+                                        </td>
+                                    </tr>                           
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>  
+                    </apex:pageBlock>
+                    <div class="col-xs-12 columns">
+                        <div class="col-centered action-btns">
+                            <apex:commandButton value="Close Popup" action="{!closePopup}" rerender="KeyInicontactNameLookup" styleClass="btn btn-secondary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+          </apex:outputPanel>
+</apex:outputPanel>
+<apex:outputPanel id="contactNameLookup">
+            <apex:outputPanel styleClass="popupBackground" rendered="{!displayContactNamePopup}"/>
+            <apex:outputPanel styleClass="custPopup" rendered="{!displayContactNamePopup}">
+            <div class="lookup-content">
+                <h2 class="sub-head"><apex:outputText Value="Contact Lookup"/></h2>
+                <div class="lookup-search">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-6 columns">
+                              <div class="input-group">
+                                  <apex:inputText id="txtSearchOrg" value="{!searchString}" styleClass="form-control" />
+                                  <div class="input-group-btn search-btn look-btn">
+                                      <apex:commandButton id="btnGoOrg" value="Go!" action="{!searchRecord}" rerender="contactNameLookup" styleClass="btn btn-default"/>
+                                  </div>
+                              </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="lookup-tab-section">
+                    <apex:pageBlock id="filOrg">
+                        <apex:pagemessages />
+                        <div class="row">
+                            <div class="col-xs-12 columns overflow">
+                                <table class="table table-striped table-bordered" id="look-table">
+                                <thead>
+                                    <tr>
+                                        <th>Contact Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!allCont}" var="item" id="searchResults">                          
+                                    <tr class="tab-row">
+                                        <td>
+                                        <apex:commandLink value="{!item.name}" action="{!getId}" reRender="contactNameLookup,KeyAcctContactPanel" status="counterStatus">
+                                        <apex:param name="selectedContactId"
+                                        value="{!item.Id}"
+                                        assignTo="{!selectedContactId}"/>
+                                        <apex:param name="selectedContactName"
+                                        value="{!item.name}"
+                                        assignTo="{!selectedContactName}"/>
+                                        <apex:param name="selectedContactTitle"
+                                        value="{!item.title}"
+                                        assignTo="{!selectedContactTitle}"/>
+                                        <apex:param name="selectedContactRole"
+                                        value="{!item.Role__c}"
+                                        assignTo="{!selectedContactRole}"/>
+                                    </apex:commandLink>
+                                        </td>
+                                    </tr>                           
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>  
+                    </apex:pageBlock>
+                    <div class="col-xs-12 columns">
+                        <div class="col-centered action-btns">
+                            <apex:commandButton value="Close Popup" action="{!closePopup}" rerender="contactNameLookup" styleClass="btn btn-secondary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+          </apex:outputPanel>
+</apex:outputPanel>
+<apex:outputPanel id="IROwnerLookup">
+            <apex:outputPanel styleClass="popupBackground" rendered="{!displayContactOwnerPopup}"/>
+            <apex:outputPanel styleClass="custPopup" rendered="{!displayContactOwnerPopup}">
+            <div class="lookup-content">
+                <h2 class="sub-head"><apex:outputText Value="IR Relationship Owner Lookup"/></h2>
+                <div class="lookup-search">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-6 columns">
+                              <div class="input-group">
+                                  <apex:inputText id="txtOwnerOrg" value="{!searchString}" styleClass="form-control" />
+                                  <div class="input-group-btn search-btn look-btn">
+                                      <apex:commandButton id="btnOwnerOrg" value="Go!" action="{!searchRecord}" rerender="IROwnerLookup" styleClass="btn btn-default"/>
+                                  </div>
+                              </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="lookup-tab-section">
+                    <apex:pageBlock id="filOwnerOrg">
+                        <apex:pagemessages />
+                        <div class="row">
+                            <div class="col-xs-12 columns overflow">
+                                <table class="table table-striped table-bordered" id="look-table">
+                                <thead>
+                                    <tr>
+                                        <th>Owner Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!allOwner}" var="item" id="searchOwnerResults">                            
+                                    <tr class="tab-row">
+                                        <td>
+                                        <apex:commandLink value="{!item.name}" action="{!getId}" reRender="IROwnerLookup,KeyAcctContactPanel" status="counterStatus">
+                                            <apex:param name="selectedOwnerName"
+                                            value="{!item.name}"
+                                            assignTo="{!selectedOwnerName}"/>
+                                        </apex:commandLink>
+                                        </td>
+                                    </tr>                           
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>  
+                    </apex:pageBlock>
+                    <div class="col-xs-12 columns">
+                        <div class="col-centered action-btns">
+                            <apex:commandButton value="Close Popup" action="{!closePopup}" rerender="IROwnerLookup" styleClass="btn btn-secondary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+          </apex:outputPanel>
+</apex:outputPanel>
+<apex:outputPanel id="DecisionMakerLookup">
+            <apex:outputPanel styleClass="popupBackground" rendered="{!displayDMakerNamePopup}"/>
+            <apex:outputPanel styleClass="custPopup" rendered="{!displayDMakerNamePopup}">
+            <div class="lookup-content">
+                <h2 class="sub-head"><apex:outputText Value="Decision Maker Lookup"/></h2>
+                <div class="lookup-search">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-6 columns">
+                              <div class="input-group">
+                                  <apex:inputText id="txtDMakerOrg" value="{!searchString}" styleClass="form-control" />
+                                  <div class="input-group-btn search-btn look-btn">
+                                      <apex:commandButton id="btnDMakerOrg" value="Go!" action="{!searchRecord}" rerender="DecisionMakerLookup" styleClass="btn btn-default"/>
+                                  </div>
+                              </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="lookup-tab-section">
+                    <apex:pageBlock id="filDMakerOrg">
+                        <apex:pagemessages />
+                        <div class="row">
+                            <div class="col-xs-12 columns overflow">
+                                <table class="table table-striped table-bordered" id="look-table">
+                                <thead>
+                                    <tr>
+                                        <th>Decision Maker Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <apex:repeat value="{!allDMaker}" var="item" id="searchDMakerResults">                          
+                                    <tr class="tab-row">
+                                        <td>
+                                        <!--<apex:commandLink value="{!item.name}" action="{!getId}" reRender="DecisionMakerLookup,PotFutOppPanel" status="counterStatus">-->
+                                         <apex:commandLink value="{!item.name}" action="{!getId}" reRender="DecisionMakerLookup,PotFutOppPanel" status="counterStatus" oncomplete="addRow();">
+                                            <apex:param name="selectedDMakerName"
+                                            value="{!item.name}"
+                                            assignTo="{!selectedDMakerName}"/>
+                                        </apex:commandLink>
+                                        </td>
+                                    </tr>                           
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>  
+                    </apex:pageBlock>
+                    <div class="col-xs-12 columns">
+                        <div class="col-centered action-btns">
+                            <apex:commandButton value="Close Popup" action="{!closePopup}" rerender="DecisionMakerLookup" styleClass="btn btn-secondary"/>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+          </apex:outputPanel>
+</apex:outputPanel>
+        </apex:form>
+    </div>
+    <script>   
+    function addRow(){
+            if ($("table textarea").length > 0) {
+            $("table textarea").resizable();
+            }
+            if ($("table .datepick").length > 0) {
+                $('table .input-group.datepick').datepicker({
+                    
+                    calendarWeeks: false,
+                    todayHighlight: true,
+                    autoclose: true                   
+                });
+            }
+            $(".datepick input").on("keypress touchstart",function(e){
+                    e.preventDefault();                    
+                });
+        
+            if ($("table .close-datepick").length > 0) {
+                $('table .input-group.close-datepick').datepicker({
+                    calendarWeeks: false,
+                    todayHighlight: true,
+                    autoclose: true,
+                    startDate: '+d'                    
+                });
+             }
+                $(".close-datepick input").on("keypress touchstart",function(e){
+                    e.preventDefault();                    
+                }); 
+           
+        }
+       
+    </script>
+     <script>
+    function openCity(evt, cityName) {
+    
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
+    <script>
+    function openPage(cityName, pageId) {    
+ 
+        var i, tabcontent, tablinks, d;
+        tabcontent = document.getElementsByClassName("tabcontent");
+         
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace("active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        if(pageId == 'Page2Tab'){
+            d = document.getElementById("Page2Tab");
+
+        } else if (pageId == 'Page3Tab'){
+            d = document.getElementById("Page3Tab");
+        } else {
+            if (pageId == 'Page1Tab')
+            {
+            d = document.getElementById("defaultOpen");
+            }
+        }
+        d.className += " active";
+
+    }  
+    
+    
+    
+    </script>
+    
+<script> 
+(function(){try{var a=navigator.userAgent; 
+if((a.indexOf('Salesforce')!=-1)&&(a.indexOf('iPhone')!=-1||a.indexOf('iPad')!=-1)&&(a.indexOf('OS/8')!=-1||a.indexOf('OS 8')!=-1)&&(a.indexOf('Safari')==-1)){ 
+var s=document.createElement('style'); 
+s.innerHTML="html,html body{overflow: auto;-webkit-overflow-scrolling:touch;}body{position:absolute;left:0;right:0;top:0;bottom:0;}"; 
+document.getElementsByTagName('head')[0].appendChild(s);}}catch(e){}})(); 
+</script> 
+</body>
+</html>
+
+</apex:page>

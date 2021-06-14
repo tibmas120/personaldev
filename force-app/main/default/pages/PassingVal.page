@@ -1,0 +1,26 @@
+<apex:page standardController="Account" recordSetVar="acc">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlock title="Full List">
+                    <apex:pageBlockTable value="{!acc}" var="a">
+                        <apex:column >  
+                            <apex:commandLink value="{!a.Name}"> 
+                                <apex:param name="link" value="{a.id}"/>
+                                <apex:param name="aname" value="{a.name}"/>
+
+                            </apex:commandlink>    
+                        </apex:column>  
+                        <apex:column value="{!a.website}"/>
+                        <apex:column value="{!a.phone}"/>          
+                    </apex:pageBlockTable>                
+                </apex:pageBlock>  
+                 
+              <apex:pageBlock title="{!$CurrentPage.parameters.aname}">
+                  <apex:detail subject="{!$CurrentPage.parameters.link}" relatedList="false" title="false"/>                
+              </apex:pageBlock>                  
+                              
+            </apex:pageBlockSection>        
+        </apex:pageBlock>    
+    </apex:form>
+</apex:page>

@@ -1,0 +1,30 @@
+<apex:page standardcontroller="Contact" Extensions="searchcontroller" >
+  
+   <apex:form >
+ 
+ <apex:pageblock title="Search Form" mode="edit" >
+ 
+   <apex:pageMessages ></apex:pageMessages>     
+
+     <apex:pageblocksection title="Search" columns="2">
+      <apex:outputtext value="Please enter the following Company details"/>
+      
+       <apex:inputField value="{!contact.Date_Of_Joining__c}"/>
+       
+        <center>
+         <apex:commandbutton action="{!Search}" value="Search"/>
+        </center> 
+         
+        <apex:pageBlockTable value="{!conList}" var="item" rendered="{!Check}">
+        
+            <apex:column value="{!item.name}"/> 
+            <apex:column value="{!item.id}"/> 
+            
+
+        </apex:pageBlockTable>   
+         </apex:pageblocksection>
+         
+         </apex:pageblock>    
+   
+</apex:form>         
+</apex:page>

@@ -1,0 +1,31 @@
+<apex:page standardController="Account" extensions="savecontroller">
+<apex:form >
+<apex:pageblock >
+<!-- The action function which calles the Apex function 'autosave' -->
+<apex:actionFunction name="autosave" action="{!autosave}" rerender="out" status="savestatus"/>
+
+<!-- A status denotion of the update -->
+<apex:actionStatus id="savestatus">
+          <apex:facet name="start"> Auto Saving....<img src="/img/loading.gif"/> </apex:facet> 
+</apex:actionStatus>
+
+<apex:pageblocksection columns="2">
+      <apex:inputfield value="{!Account.Name}"/>
+      <apex:inputfield value="{!Account.BillingCity}"/>
+      <apex:inputfield value="{!Account.BillingCountry}"/>
+      <apex:inputfield value="{!Account.BillingState}"/>
+</apex:pageblocksection>      
+</apex:pageblock>
+
+<!-- A javascript recursive function which calls itself every 10 seconds, the setTimeout method calls the apex function 'autosave' defined in the <apex:actionfunction> tag above -->
+<script>
+          window.setTimeout(recursivecall,10000);
+          function recursivecall()
+          {
+              window.setTimeout(recursivecall,10000);
+              autosave();
+          }    
+</script>
+                
+</apex:form>      
+</apex:page>

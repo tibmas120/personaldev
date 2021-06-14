@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Salesforce</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid padding-bottom100 grey-bg">
+        <form action="" method="post" class="opp-win-form">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 columns">
+                    <h1 class="main-head">Sales Call Plan</h1>
+                </div>
+            </div>
+            <div class="opp-win-section blue-bg">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="customer-n" class="quest-head white-font">Customer</label>
+                            <input type="text" id="customer-n" class="form-control" disabled value="Lorem Ipsum">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="opportunity-n" class="quest-head white-font">Opportunity Name</label>
+                            <input type="text" id="opportunity-n" class="form-control" disabled value="Lorem Ipsum">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="white-content">
+                <div class="row">
+                    <div class="attendees-section col-xs-12 col-md-3 columns">
+                        <div class="form-group">
+                            <label for="attendees" class="acc-label">Attendees</label>
+                            <input type="text" id="attendees" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-3 columns">
+                        <label for="meeting-start-date" class="acc-label">Meeting Start</label>
+                        <div class="input-group date datetimepick" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <input type="text" class="form-control" id="meeting-start-date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-3 columns">
+                        <label for="meeting-end-date" class="acc-label">Meeting End</label>
+                        <div class="input-group date datetimepick" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input2">
+                            <input type="text" class="form-control" id="meeting-end-date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>                        
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-3 columns">
+                        <label for="meeting-location" class="acc-label">Meeting Location</label>
+                        <input type="text" id="meeting-location" class="form-control">
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-3 columns">
+                        <label for="last-meet-date" class="acc-label">Date of Last Meeting</label>
+                        <div class="input-group date datetimepick" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input3">
+                            <input type="text" class="form-control" id="last-meet-date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 columns">
+                        <div class="form-group">
+                            <label for="meeting-objective" class="acc-label">Meeting Objective</label>
+                            <textarea id="meeting-objective"></textarea>
+                            <span class="pull-right max-char">250 Characters</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group accordion plan-accordion" id="accordion2" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading5">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse5" aria-expanded="true" aria-controls="collapse5" class="text-none"><i class="acc-down"></i>
+                        Notes from Last Meeting
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading5">
+                        <div class="panel-body">
+                            <ul class="blue-bullet-list">
+                                <li><span>In our last meeting, what did we learn? </span></li>
+                                <li><span>What opportunities did we identify?</span></li>
+                                <li><span>What were our next steps? Did we do them?</span></li>
+                                <li><span>What is our objective for the next meeting? </span></li>
+                            </ul>
+                            <div class="form-group">
+                                <textarea id="meeting-notes"></textarea>
+                                <span class="pull-right max-char">1000 Characters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading6">
+                        <h4 class="panel-title">
+                            <a class="collapsed text-none" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse6" aria-expanded="false" aria-controls="collapse6"><i class="acc-down"></i>
+                                Pre-Meeting: Plan
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                        <div class="panel-body">
+                            <ul class="blue-bullet-list">
+                                <li><span>What is the meeting objective and our sales strategy?  Overall account / meeting goals?</span></li>
+                                <li><span>What will be top of mind for the customer?</span></li>
+                                <li><span>What roles/people will be at the meeting? Is there a relationship strategy for each one?</span></li>
+                                <li><span>Are there other IR team members who could enhance the sales call?</span></li>
+                                <li><span>What insights, data, or stories can I share?</span></li>
+                            </ul>
+                            <div class="form-group">
+                                <textarea id="pre-meet-notes"></textarea>
+                                <span class="pull-right max-char">1000 Characters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading7">
+                        <h4 class="panel-title">
+                            <a class="collapsed text-none" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse7" aria-expanded="false" aria-controls="collapse7"><i class="acc-down"></i>
+                        Discover
+                    </a>
+                        </h4>
+                    </div>
+                    <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+                        <div class="panel-body">
+                            <ul class="blue-bullet-list">
+                                <li><span>What questions should I ask and how can I develop rapport and the relationship?</span></li>
+                                <li><span>What info do I need to confirm or explore?</span></li>
+                                <li><span>What focus words are important?</span></li>
+                                <li><span>What are their expected “tough questions” and potential pitfalls? How should I handle these?</span></li>
+                                <li><span>How can I ensure the meeting stays on track?</span></li>
+                            </ul>
+                            <div class="form-group">
+                                <textarea id="discover-notes"></textarea>
+                                <span class="pull-right max-char">1000 Characters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading8">
+                        <h4 class="panel-title">
+                            <a class="collapsed text-none" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse8" aria-expanded="false" aria-controls="collapse8"><i class="acc-down"></i>
+                        Sell
+                    </a>
+                        </h4>
+                    </div>
+                    <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+                        <div class="panel-body">
+                            <ul class="blue-bullet-list">
+                                <li><span>What are the best areas to pursue?</span></li>
+                                <li><span>What am I selling? What am I prepared to offer?</span></li>
+                                <li><span>What are the expected objections and how will I handle them?</span></li>
+                                <li><span>How will I be prepared to sell value before I decide to discount price?</span></li>
+                                <li><span>How can I advance the sale in the pipeline?</span></li>
+                                <li><span>What next step commitments do I want?</span></li>
+                            </ul>
+                            <div class="form-group">
+                                <textarea id="sell-notes"></textarea>
+                                <span class="pull-right max-char">1000 Characters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading9">
+                        <h4 class="panel-title">
+                            <a class="collapsed text-none" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse9" aria-expanded="false" aria-controls="collapse9"><i class="acc-down"></i>
+                        Post-Meeting: Confirm
+
+                    </a>
+                        </h4>
+                    </div>
+                    <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+                        <div class="panel-body">
+                            <ul class="blue-bullet-list">
+                                <li><span>How did we do?</span></li>
+                                <li><span>What did the customer and IR agree to do? </span></li>
+                                <li><span>How well did that address the account goals? Meeting goals? </span></li>
+                                <li><span>What progress was made in advancing a sale?</span></li>
+                            </ul>
+                            <div class="form-group">
+                                <textarea id="post-meet-notes"></textarea>
+                                <span class="pull-right max-char">1000 Characters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-section">
+                <h2 class="sub-head">Sales Manager / Leader Feedback</h2>
+                <textarea id="sales-plan-feedback"></textarea>
+                <span class="pull-right max-char">1000 Characters</span>
+            </div>
+        </form>
+    </div>
+    <footer class="sticky-footer">
+        <div class="col-xs-12 columns">
+            <div class="col-xs-12 col-centered action-btns">
+                <a href="#" class="btn btn-primary">Save</a>
+                <a href="#" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

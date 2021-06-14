@@ -1,0 +1,39 @@
+<apex:page sidebar="false"  standardController="Account" extensions="RegistrationController">
+<apex:pageMessages />
+<apex:form >
+<apex:pageblock title="Registration Form" mode="edit">
+
+     
+
+     <apex:pageblocksection title="Company Details" columns="2">
+      <apex:outputtext value="Please enter the following Company details"/>
+       <apex:inputField value="{!account.Name}"/>
+       <apex:inputField value="{!account.Site}"/>
+               </apex:pageblocksection>
+       
+       
+
+        <apex:pageblocksection title="Company Adress Details" columns="2">
+      <apex:outputtext value="Please enter the following address details"/>
+       <apex:inputField value="{!account.BillingStreet}"/>
+       <apex:inputField value="{!account.BillingCity}"/>
+       <apex:inputField value="{!account.BillingState}"/>
+       <apex:inputField value="{!account.BillingCountry}"/>
+       </apex:pageblocksection>
+       
+
+        <apex:pageBlockSection title="Additional Details" columns="1">
+         <apex:outputtext value="Please enter additional details"/>
+          <apex:inputField value="{!account.phone}"/>
+            <apex:inputField value="{!account.website}"/>
+            <apex:inputField value="{!account.type}"/>                 
+                
+        </apex:pageBlockSection>
+        
+
+     <apex:commandbutton action="{!submit}" value="Submit"/>
+      
+
+</apex:pageblock>
+</apex:form>
+</apex:page>

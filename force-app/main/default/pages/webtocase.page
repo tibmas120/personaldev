@@ -1,0 +1,28 @@
+<apex:page >
+    <h1>Congratulations</h1>
+ 
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+
+<form action="https://www.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+<input type="hidden" name="orgid" value="00D90000000h0xQ"/>
+<input type="hidden" name="retURL" value="http://https://ap1.salesforce.com/500/o"/>
+
+
+<label for="name" id="name_pcl">Contact Name</label><input  aria-labelledby="name_pcl" id="name" maxlength="80" name="name" size="20" type="text" />
+
+<label for="email" id="email_pcl">Email</label><input  aria-labelledby="email_pcl" id="email" maxlength="80" name="email" size="20" type="text" />
+
+<label for="phone" id="phone_pcl">Phone</label><input  aria-labelledby="phone_pcl" id="phone" maxlength="40" name="phone" size="20" type="text" />
+
+<label for="subject" id="subject_pcl">Subject</label><input  aria-labelledby="subject_pcl" id="subject" maxlength="80" name="subject" size="20" type="text" />
+
+<label for="description" id="description_pcl">Description</label><textarea name="description"></textarea>
+
+<input type="hidden"  id="external" name="external" value="1" />
+<input type="submit" name="submit"/>
+
+</form>
+</meta>
+  
+</apex:page>

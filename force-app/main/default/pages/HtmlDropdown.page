@@ -1,0 +1,26 @@
+<apex:page controller="ContollerClass">
+    <apex:outputPanel id="selectedValue">
+    {!selectdUser}
+    </apex:outputPanel><br/>
+    <apex:form >
+    <apex:actionFunction name="setValue" reRender="selectedValue">
+        <apex:param name="x" value="x" assignTo="{!selectdUser}"/>
+    </apex:actionFunction>
+    <select onchange="setValue(this.value)">
+        <option value="">--None--</option>
+    <apex:repeat value="{!users}" var="user">
+        <option value="{!user.Id}">{!user.Name}</option>
+    </apex:repeat>
+    </select>
+    
+    <apex:selectList id="chooseColor" value="{!string}" size="1">
+            <apex:selectOption itemValue="red" itemLabel="Red"/>
+            <apex:selectOption itemValue="white" itemLabel="White"/>
+            <apex:selectOption itemValue="blue" itemLabel="Blue"/>
+        </apex:selectList> 
+        
+        <apex:selectList id="role" value="{!result}" multiselect="false" size="1">
+                              <apex:selectOptions value="{!Roles}"/>
+                            </apex:selectList>
+    </apex:form>
+</apex:page>

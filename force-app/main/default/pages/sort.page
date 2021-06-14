@@ -1,0 +1,24 @@
+<apex:page controller="AccountController">
+ <apex:form >
+ <apex:pageBlock >
+ <apex:pageBlockTable value="{!Accounts}" var="acc">
+ <apex:column >
+ <apex:facet name="header">
+ <apex:commandLink action="{!sort}" value="Name{!IF(wikiUTIL_Sorter.column=='Name',IF(wikiUTIL_Sorter.sortDirection='ASC','?','?'),'')}">
+ <apex:param value="Name" name="column" assignTo="{!wikiUTIL_Sorter.column}" ></apex:param>
+ </apex:commandLink>
+ </apex:facet>
+ <apex:outputText value="{!acc.Name}" />
+ </apex:column>
+ <apex:column >
+ <apex:facet name="header">
+ <apex:commandLink action="{!sort}" value="Phone{!IF(wikiUTIL_Sorter.column=='Phone',IF(wikiUTIL_Sorter.sortDirection='ASC','?','?'),'')}">
+ <apex:param value="Phone" name="column" assignTo="{!wikiUTIL_Sorter.column}" ></apex:param>
+ </apex:commandLink>
+ </apex:facet>
+ <apex:outputText value="{!acc.Phone}" />
+ </apex:column>
+ </apex:pageBlockTable>
+ </apex:pageBlock>
+ </apex:form>
+</apex:page>

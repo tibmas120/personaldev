@@ -1,0 +1,23 @@
+<apex:page >
+
+<style type="text/css">
+    .col1 {width:100px; text-align:center;}
+    .col2 {width:150px; text-align:center;}
+    .col3 {width:200px; text-align:center;}        
+</style>
+
+<apex:pagemessages />
+<apex:form >
+    <apex:panelGrid columns="3" columnClasses="col1, col2, col3" border="1" cellpadding="5" cellspacing="5">
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+        <apex:outputText >Sample</apex:outputText>
+    </apex:panelGrid>
+</apex:form>
+</apex:page>

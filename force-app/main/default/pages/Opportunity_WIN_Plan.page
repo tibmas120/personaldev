@@ -1,0 +1,96 @@
+<apex:page standardController="Opportunity" extensions="OptyWinExtension">
+    <style type="text/css">
+    .bPageBlock .pbTitle {
+        width: 100%;    
+        text-align: center;
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 50px 0;
+    }
+    
+    td {
+      padding: 10px 0;
+    }
+    </style>
+    <apex:form >
+        <div align="right">
+            <apex:image url="{!$Resource.IR_Logo}" width="100" height="50"/>
+        </div>
+        <apex:pageBlock title="Opportunity Win Plan">    
+        </apex:pageBlock>
+        <apex:pageblock >  
+        <table border="0.5">
+            <tr>
+                <td>
+                <b>Customer:</b> {!customer}
+                </td>
+                <td>
+                <b>Opportunity Point of Contact:</b> {!opptyPOC}
+                </td>
+            </tr>
+        </table>
+        </apex:pageblock>
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="1">
+                    1. <apex:inputField value="{!oppty.Overview_of_the_Opportunity__c}"/>
+                    2. <apex:inputField value="{!oppty.Customer_Reason_for_Taking_Action__c}"/>
+                    <!-- 3. <apex:pageblockTable value="{!oppWin}" var="o">
+                            <apex:column>
+                                <apex:facet name="header">
+                                    <apex:outputLabel value="{!$ObjectType.Opportunity_Win_Plan_templates__c.fields.Opportunity_Qualification__c.Label}" />
+                                </apex:facet>
+                                <apex:outputText value="{!o.Opportunity_Qualification__r.Question__c}"/>
+                            </apex:column>     
+                            <apex:column>
+                                <apex:facet name="header">
+                                    <apex:outputLabel value="{!$ObjectType.Opportunity_Win_Plan_templates__c.fields.Date_1__c.Label}" />
+                                </apex:facet>
+                                <apex:inputText value="{!o.Date_1__c}"/>
+                            </apex:column>
+                            <apex:column>
+                                <apex:facet name="header">
+                                    <apex:outputLabel value="{!$ObjectType.Opportunity_Win_Plan_templates__c.fields.Evidence_1__c.Label}" />
+                                </apex:facet>
+                                <apex:inputText value="{!o.Evidence_1__c}"/>
+                            </apex:column>
+                       </apex:pageblockTable>  -->
+                       
+                       3. <apex:pageblockTable value="{!questionList}" var="q">
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputLabel value="{!$ObjectType.Opportunity_Win_Plan_templates__c.fields.Opportunity_Qualification__c.Label}" />
+                                </apex:facet>
+                                <apex:outputText value="{!q.question}"/>
+                            </apex:column>     
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputLabel value="{!$ObjectType.Opportunity_Win_Plan_templates__c.fields.Date_1__c.Label}" />
+                                </apex:facet>
+                                <apex:inputText value="{!q.dates}" size="5" id="demo" onfocus="DatePicker.pickDate(false, this , false);"/>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:outputLabel value="{!$ObjectType.Opportunity_Win_Plan_templates__c.fields.Evidence_1__c.Label}" />
+                                </apex:facet>
+                                <apex:inputText value="{!q.evidence}"/>
+                            </apex:column>
+                       </apex:pageblockTable>
+                       
+                       </apex:pageBlockSection>
+        </apex:pageBlock>
+            <apex:pageblock >  
+                <apex:pageBlockSection >
+                    <apex:pageBlockSectionItem >
+                    <apex:outputPanel layout="none">
+                        <div align="right">
+                            <apex:commandButton action="{!SaveOptyWin}" value="Save" id="theButtonSave"/>
+                            <apex:commandButton action="{!save}" value="Save & Exit" id="theButtonSavenExt"/>
+                            <apex:commandButton action="{!cancel}" value="Cancel" id="theButtonCancel"/>
+                        </div>
+                    </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:pageblock>
+    </apex:form>
+</apex:page>

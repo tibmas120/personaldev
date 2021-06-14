@@ -1,0 +1,14 @@
+<apex:page showHeader="false" sidebar="false" controller="login">
+<apex:form >
+<apex:pageBlock >
+<apex:pageMessages ></apex:pageMessages>
+<apex:pageBlockSection title="WELCOME">
+<br>UserName<apex:inputText value="{!username}"/></br>
+<br>PassWord<apex:inputsecret value="{!password}"/></br>
+<apex:commandButton value="Submit" action="{!Login12}"/>
+<apex:outputLink value="https://c.ap1.visual.force.com/apex/signup"> Create new Account</apex:outputLink>
+<apex:outputLink value="https://c.ap1.visual.force.com/apex/forgetpasssword">ForgetPassword</apex:outputLink>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

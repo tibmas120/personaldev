@@ -1,0 +1,31 @@
+<apex:page standardController="Case" contentType="application/vnd.ms-excel#SalesForceExport.xls" cache="true" showHeader="false" sidebar="false" title="Export as PDF">
+<style> 
+     body {font-family: Arial Unicode MS;
+         font-size:14px;
+     }
+     .txtcls{
+         font-family: Arial Unicode MS;
+         font-size:14px;
+         color:red;
+     }
+
+  </style>
+  <html>
+  <title><h2>Case Detail</h2></title>
+  <body>
+  <tr><td> Owner : {!Case.Owner.name}</td></tr>
+  <tr><td>Case No: {!Case.CaseNumber}</td></tr>
+  <tr><td> Contact : {!Case.Contact.name}</td></tr>
+  <tr><td> Account : {!Case.Account.name}</td></tr>
+  <tr><td> Type : {!Case.Type}</td></tr>
+  <tr><td> Type : {!Case.Reason}</td></tr>
+  <tr><td> Type : {!Case.status}</td></tr>
+  <tr><td> Priority : {!Case.Priority}</td></tr>
+  <tr><td> Origin : {!Case.Origin}</td></tr>
+  <tr><td> Created Date : {!Case.CreatedDate}</td></tr>
+  <tr><td> Closed Date : {!Case.ClosedDate}</td></tr>
+  <tr><td> Subject : {!Case.Subject}</td></tr>
+  <tr><td> Description : {!Case.Description}</td></tr>
+  </body>
+  </html>
+  </apex:page>

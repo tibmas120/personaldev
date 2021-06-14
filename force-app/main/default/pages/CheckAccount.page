@@ -1,0 +1,5 @@
+<apex:page STANDardController="account" showHeader="false">
+<apex:form >
+<apex:inputField value="{!account.name}"/>
+</apex:form>
+</apex:page>

@@ -1,0 +1,108 @@
+<apex:page StandardController="Account" extensions="CustomOrgChart_Page_Extension" sidebar="false" showHeader="false" standardStyleSheets="false">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<html>
+<head>
+<!-- Bootstrap -->
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/bootstrap-datepicker3.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/bootstrap-datetimepicker.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/style.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Html1,'html/css/jquery-ui.css')}"/>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/jquery-1.12.4.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/bootstrap-datepicker.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/bootstrap-datetimepicker.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/script.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Html1,'html/js/jquery-ui.js')}"/>
+<style>
+body{
+    background:#e0e0e1;
+}
+.google-visualization-orgchart-node-medium{
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    padding:0;
+    box-shadow:none;
+    vertical-align:top;
+}
+.google-visualization-orgchart-linebottom{
+        border-bottom: 1px solid #999;
+}
+.google-visualization-orgchart-lineleft {
+    border-left: 1px solid #999;
+}
+.google-visualization-orgchart-linenode{
+    position:relative;
+}
+.google-visualization-orgchart-lineright{
+    border-right: 1px solid #999;
+}
+.google-visualization-orgchart-linenode {
+    padding: 5px;
+}
+.panel-head {
+    color: #fff;
+    font-size: 16px;
+    padding: 7px 5px;
+    background: #2980b9;
+    min-width: 260px;
+}
+
+.p-title, .p-role, .p-strength{
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.p-strength{
+    border:none;
+}
+.p-title b, .p-role b, .p-strength b{
+    display: block;
+    padding-bottom: 10px;
+}
+</style>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type='text/javascript'>
+    google.load('visualization', '1', {packages:['orgchart']});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {      
+        var data = new google.visualization.DataTable();     
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Manager');
+        data.addColumn('string', 'ToolTip');
+            data.addRows([         
+                  {!ContactData}
+            ]); 
+        //data.setRowProperty(0, 'style', 'border: 1px solid red;background:yellow');  
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+        chart.draw(data, {allowHtml:true});
+    };
+</script>
+<script>
+    function printPage(){
+    jQuery('[id$=print-btn]').hide();
+    jQuery('[id$=back-btn]').hide();
+    window.print();
+    }
+</script>
+</head>
+<body>
+<apex:form >
+    <apex:commandLink id="print-btn" value="Print" onclick="printPage();" styleClass="btn btn-primary" style="float:left;"/>
+    <div id='chart_div' style="font-size:18px;"></div><br/>
+    <apex:commandbutton id="back-btn" action="{!BackAccount}" value="Cancel" styleClass="btn btn-primary" style="float:left;"/>
+    <br/>
+    <br/>
+</apex:form>
+</body>
+</html>
+</apex:page>

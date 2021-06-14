@@ -1,0 +1,37 @@
+<apex:page standardController="Map__c" lightningStylesheets="true" doctype="xhtml-1.0-transitional" showHeader="true" sidebar="true">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+        <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+
+        <script type="text/javascript">
+        function GetMap()
+        {
+            var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {credentials:"AslhgiiyIM-0vSCrTMx1Bk7foi7mWsZ1pWNf19f-HoLB3P_l4-eCFArTV8nd1MuW"});
+            
+            //Request the user's location
+            navigator.geolocation.getCurrentPosition(function () {
+            var loc = new Microsoft.Maps.Location(
+                "{!Map__c.Location__Latitude__s}",
+                "{!Map__c.Location__Longitude__s}");
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+
+            //Center the map on the user's location.
+            map.setView({ center: loc, zoom: 15 });
+        });
+        }
+        </script>
+    </head>
+
+    <body onload="GetMap();"> 
+        <div id='mapDiv' style="position:relative; width:800px; height:500px;"></div>
+    </body>
+</html>
+<script>
+	window.onload = GetMap;
+</script>
+</apex:page>

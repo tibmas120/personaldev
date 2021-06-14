@@ -1,0 +1,50 @@
+body{
+    background:#e0e0e1;
+}
+.google-visualization-orgchart-node-medium{
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    padding:0;
+    box-shadow:none;
+    vertical-align:top;
+}
+.google-visualization-orgchart-linebottom{
+        border-bottom: 1px solid #999;
+}
+.google-visualization-orgchart-lineleft {
+    border-left: 1px solid #999;
+}
+.google-visualization-orgchart-linenode{
+    position:relative;
+}
+.google-visualization-orgchart-lineright{
+    border-right: 1px solid #999;
+}
+.google-visualization-orgchart-linenode {
+    padding: 5px;
+}
+.panel-head {
+    color: #fff;
+    font-size: 16px;
+    padding: 7px 5px;
+    background: #2980b9;
+    min-width: 260px;
+}
+
+.p-title, .p-role, .p-strength{
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.p-strength{
+    border:none;
+}
+.p-title b, .p-role b, .p-strength b{
+    display: block;
+    padding-bottom: 10px;
+}

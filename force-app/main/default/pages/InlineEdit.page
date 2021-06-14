@@ -1,0 +1,18 @@
+<apex:page standardController="opportunity" recordSetVar="opp">
+    <apex:form >
+        <apex:pageBlock title="Inline Edit" >
+            <apex:pageBlockTable value="{!opp}" var="o">
+                <apex:column value="{!o.name}"/> 
+                <apex:column value="{!o.stagename}"/>
+                <apex:column value="{!o.closedate}"/>
+                <apex:column value="{!o.Expectedrevenue}"/>
+                <apex:column headerValue="Editable Amount">
+                    <apex:outputField value="{!o.amount}">
+                        <apex:inlineEditSupport />    
+                    </apex:outputField>              
+                </apex:column>  
+                                     
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,79 @@
+﻿.slo-common-active_blue_btn {
+    padding: 15px;
+    line-height:1;
+    color: #07679B;
+    font-size: 14px;
+    background: transparent;
+    border-radius: 0;
+    border: 1px solid #07679B;
+    box-shadow: none;
+    font-family: 'FFDINWebBold';
+    text-transform:uppercase;
+    width:100%;
+}
+.fileUploadContainer .slo-common-active_blue_btn{
+    padding:15px;
+    line-height:1;
+    margin-bottom: 10px;
+}
+ .slo-common-active_blue_btn:hover,
+ .slo-common-active_blue_btn:focus{
+    color: #ffffff;
+    background: #07679B;
+    border: 1px solid #07679B;
+}
+ 
+.slo-common-active_blue_btn:active{
+    color: #ffffff !important;
+    background: #042037 !important;
+    border: 1px solid #042037 !important;
+}
+
+
+.slo-common-active_orange_btn {
+     padding:15px;
+    color: #042037;
+   line-height:1;
+    font-size: 14px;
+    background: #FBBB36;
+    border-radius: 0;
+    box-shadow: none;
+    text-transform:uppercase;
+    border: 1px solid #FBBB36;
+    font-family:'FFDINWebBold';
+    width:100%;
+}
+
+/*.slo-common-spacings_vs2 .slo-common-active_orange_btn{
+     margin-left: 20px;
+}*/
+  .slo-common-active_orange_btn:hover,
+  .slo-common-active_orange_btn:focus{
+    color:#042037;
+    background: #E59902;
+    border: 1px solid #E59902;
+}
+   
+   .slo-common-active_orange_btn:active,
+   .slo-common-active_orange_btn:visited{
+    color:#042037;
+    background: #BF7E2A !important;
+    border: 1px solid #E59902 !important;
+}
+
+/*Disabled states start*/
+.slo-common-active_blue_btn.btn-default.disabled:hover, 
+.slo-common-active_blue_btn.btn-default[disabled]:hover,
+.slo-common-active_blue_btn.btn-default.disabled:focus, 
+.slo-common-active_blue_btn.btn-default[disabled]:focus{
+	background-color: transparent;
+    border-color: #07679B;
+}
+.slo-common-active_orange_btn.btn-default.disabled:hover, 
+.slo-common-active_orange_btn.btn-default[disabled]:hover,
+.slo-common-active_orange_btn.btn-default.disabled:focus, 
+.slo-common-active_orange_btn.btn-default[disabled]:focus{
+	background-color: #FBBB36;
+    border-color: #FBBB36;
+}
+/*Disabled states ends*/

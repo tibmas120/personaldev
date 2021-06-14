@@ -1,0 +1,4 @@
+<apex:component >
+    <apex:attribute name="Text" description="Enter Your Name" Type="String" required="true"/>
+    <apex:outputText value="{!Text}"></apex:outputText>
+</apex:component>

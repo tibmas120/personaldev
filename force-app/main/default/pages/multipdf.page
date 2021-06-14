@@ -1,0 +1,30 @@
+<apex:page controller="PDFController" renderAs="pdf" showHeader="false" sidebar="false" title="Export as PDF" id="thePage">
+<apex:repeat var="o" value="{!oList}" id="theRepeat">
+  <html>
+  <title><h2>Case Detail</h2></title>
+  <body>
+  <table border = "0">
+  <tr><td> Owner : {!o.Owner.name}</td></tr>
+  <tr><td>Case No: {!o.caseNumber}</td></tr>
+  <tr><td> Contact : {!o.Contact.name}</td></tr>
+  <tr><td> Account : {!o.Account.name}</td></tr>
+  <tr><td> Type : {!o.Type}</td></tr>
+  <tr><td> Reason : {!o.Reason}</td></tr>
+  <tr><td> Status : {!o.status}</td></tr>
+  <tr><td> Priority : {!o.Priority}</td></tr>
+  <tr><td> Origin : {!o.Origin}</td></tr>
+  <tr><td> Created Date : {!o.CreatedDate}</td></tr>
+  <tr><td> Closed Date : {!o.ClosedDate}</td></tr>
+  <tr><td> Subject : {!o.Subject}</td></tr>
+  <tr><td> Description : {!o.Description}</td></tr>
+</table>
+
+
+<br/><br/><br/> <br/><br/><br/><br/> <br/><br/><br/>
+<br/><br/><br/>  <br/><br/><br/> <br/><br/><br/>
+<br/><br/><br/>  <br/><br/><br/> <br/><br/><br/>
+<br/><br/><br/> <br/><br/><br/><br/></body>
+</html>
+
+    </apex:repeat>
+</apex:page>

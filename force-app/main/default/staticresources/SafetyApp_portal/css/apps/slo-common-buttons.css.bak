@@ -1,0 +1,47 @@
+﻿.slo-common-active_blue_btn {
+    padding: 6px 40px 4px;
+    color: #07679B;
+    font-size: 15px;
+    background: #fff;
+    border-radius: 0;
+    border: 1px solid #07679B;
+    box-shadow: none;
+    font-family: 'FFDINWebMedium';
+    text-transform:uppercase;
+    width:150px;
+}
+.slo-common-active_blue_btn:hover,
+.slo-common-active_blue_btn:focus,
+.slo-common-active_blue_btn:active {
+        color: #ffffff;
+        background: #07679B;
+        border: 1px solid #07679B;
+}
+
+
+.slo-common-active_orange_btn {
+    padding: 6px 40px 4px;
+    color: #005179;
+   
+    font-size: 15px;
+    background: #FBBB36;
+    border-radius: 0;
+    box-shadow: none;
+    text-transform:uppercase;
+    border: 1px solid #FBBB36;
+    font-family:'FFDINWebMedium';
+    width:150px;
+}
+/*.slo-common-spacings_vs2 .slo-common-active_orange_btn{
+     margin-left: 20px;
+}*/
+
+    .slo-common-active_orange_btn:hover,
+    .slo-common-active_orange_btn:focus{
+        color: #005179;
+        background: #E59902;
+        border: 1px solid #E59902;
+    }
+    .slo-common-active_orange_btn:active{
+        background: #BF7E2A;
+    }

@@ -1,0 +1,18 @@
+<apex:page showHeader="false" sidebar="false" controller="signup">
+<apex:form >
+<apex:pageBlock >
+<apex:pageMessages ></apex:pageMessages> 
+<apex:pageBlockSection title="Account New">
+<br>User Name<apex:inputText value="{!username}"/></br>
+<br>Email Id<apex:inputText value="{!emailId}"/></br>
+<br>PassWord<apex:inputsecret value="{!password}"/></br>
+<br>confirm PassWord<apex:inputsecret value="{!confirmpassword}"/></br>
+<br>choose a question<apex:selectList value="{!secQues}" multiselect="false" size="1">
+            <apex:selectOptions value="{!questions}"/>
+        </apex:selectList></br>
+<br>Answer<apex:inputsecret value="{!secAns}"/></br>        
+<apex:commandButton value="Submit" action="{!createaccount}"/>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

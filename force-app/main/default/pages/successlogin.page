@@ -1,0 +1,5 @@
+<apex:page sidebar="false" showHeader="false">
+<p></p>
+<big><big><center><b><font color="blue">CONGRATS YOUR ACCOUNT HAS BEEN SUCCESSFULLY CREATED</font></b></center></big></big>
+<p><big><big><center><b><apex:outputLink value="https://c.ap1.visual.force.com/apex/login"> sign In</apex:outputLink></b></center></big></big></p>
+</apex:page>

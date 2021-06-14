@@ -1,0 +1,571 @@
+﻿.slo-common-form{
+    color:#111;
+}
+.slo-common-form fieldset > legend{
+    border-bottom:1px solid #ccc;
+    color:#666;
+    font-size:36px;
+    font-family:"FFDINWeb";
+    line-height:1;
+    padding-bottom:10px;
+    margin-bottom:0;
+}
+.slo-common-form .form-group{
+    position:relative;
+    margin-bottom:0;
+}
+.slo-common-form label.info{    
+    font-size:14px;
+    line-height:1;
+    font-weight:normal;
+    font-family:"FFDINWebItalic";
+    display:block;
+}
+.slo-common-form label[aria-labelledby=title]{    
+    font-size:18px;
+    font-family:"FFDINWebBold";
+    margin:0;
+    padding:0 0 20px;
+    height:38px;
+    display:block;
+    text-transform:uppercase;
+    line-height: 1;
+    font-weight: normal;
+}
+.slo-common-form label[aria-labelledby=title] > span.fa-question-circle{
+    color:#00517A;
+   
+}
+.slo-common-form label[aria-labelledby=title] + label.info{
+    margin-top:-10px;
+    margin-bottom:10px;
+    line-height:1.75;
+    letter-spacing:0.5px;
+}
+
+.slo-common-form.reviewForm label[aria-labelledby=title]{
+    margin:16px 0 0;
+}
+.slo-common-form.reviewForm label[aria-labelledby=value]{
+    font-weight:normal;
+    display:block;
+    margin-bottom:0;
+}
+
+.slo-common-form .form-control{
+    border-radius:0;
+    font-size:16px;
+}
+.slo-common-form .form-control::-moz-placeholder {
+  font-family:"FFDinWebItalic";
+}
+.slo-common-form .form-control:-ms-input-placeholder {
+  font-family:"FFDinWebItalic";
+}
+.slo-common-form .form-control::-webkit-input-placeholder {
+  font-family:"FFDinWebItalic";
+}
+.slo-common-form input[type=email],
+.slo-common-form input[type=text]{
+    color:#111;
+    padding: 10px 15px;
+    min-height:50px;
+}
+.slo-common-form .form-control.hasDatepicker{
+    background-image: url(../../img/icon-calendar.png);
+    background-position: center right 10px;
+    background-repeat: no-repeat;
+}
+/*validaion interaction start*/
+.slo-common-form input[type=email].valid, 
+.slo-common-form input[type=text].valid {
+    border: 2px solid #14993F;
+    background-image: url(../../img/icon-form-sucess.png);
+    background-position: center right 10px;
+    background-repeat: no-repeat;
+    padding-right: 50px;
+}
+.slo-common-form input[type=text]#phNo{
+    border: 1px solid #ccc;
+    background: none;
+    padding-right: 50px
+}
+
+.slo-common-form input[type=email].error, 
+.slo-common-form input[type=text].error {
+    border: 2px solid #B02621;
+    background-image: url(../../img/icon-form-error.png);
+    background-position: center right 10px;
+    background-repeat: no-repeat;
+    padding-right: 42px;
+}
+
+.slo-common-form input#phNo{
+    border: 1px solid #ccc;
+    background: none;
+    padding-right: 0;
+}
+.slo-common-form input#phNo[aria-invalid=true]{
+    border: 2px solid #B02621;
+    background-image: url(../../img/icon-form-error.png);
+    background-position: center right 10px;
+    background-repeat: no-repeat;
+    padding-right: 42px;
+}
+.slo-common-form input#phNo[aria-invalid=false]{
+    border: 1px solid #ccc;
+    background-image: none;
+    background-position: center right 10px;
+    background-repeat: no-repeat;
+    padding-right: 50px;
+}
+.slo-common-form .form-group label.error {
+    margin-top: 34px;
+}
+.slo-common-form .form-group.altFormGroup label.error {
+    float: left;
+    width: 30%;
+    display: block;
+    margin-top: 23px;
+    margin-left: 103%;
+    position: absolute;
+    bottom: 0px;
+}
+.slo-common-form label.error{
+    font-size:14px;
+    font-family: 'FFDINWeb';
+    font-weight:normal;
+    margin-bottom:0;
+}
+.slo-common-form label.error:before {
+    content: "REQUIRED";
+    color: #B02621;
+    position: absolute;
+    margin-top: -24px;
+    font-family: 'FFDINWebBold';
+    font-weight: normal;
+}
+
+/*validaion interaction ends*/
+
+/*cal + jq ui modification as per theme start*/
+.ui-widget{
+    font-family: "FFDINWeb";
+}
+.ui-widget-content{border:1px solid #ccc;color:#666;}
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight,
+.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default{
+    text-align:center;
+}
+/*cal + jq ui modification as per theme ends*/
+
+/*grouping for two fields/three dropdown start*/
+.slo-common-form .form-group.twoFieldHandler:after{
+    clear:both;
+    content:'';
+    display:block;
+}
+.slo-common-form .form-group.twoFieldHandler > section{
+    display:inline-table;
+    width:calc(50% - 10px);
+}
+.slo-common-form .form-group.twoFieldHandler > section:first-of-type{
+    float:left; 
+}
+.slo-common-form .form-group.twoFieldHandler > section:last-of-type{
+    float:right;
+}
+.slo-common-form .form-group.multiDropdownHandler:after{
+    clear:both;
+    content:'';
+    display:table;
+}
+.slo-common-form .form-group.multiDropdownHandler > section{    
+    display:inline-table;
+    float:left;
+    width: 33.33333333333333%;        
+}
+.slo-common-form .form-group.multiDropdownHandler > section:first-child {
+    padding-right:10px;
+}
+.slo-common-form .form-group.multiDropdownHandler > section:nth-child(2) {
+    padding:0 5px 0;
+}
+.slo-common-form .form-group.multiDropdownHandler > section:last-child {
+    padding-left:10px;
+}
+
+
+.slo-common-form .form-group .dropdown > select.btn{
+    color:#999;
+    width:100%;
+    border-radius:0; 
+    font-size:16px;
+    /*font-style:italic;*/
+    text-align:left;
+    /*padding: 10px 15px; */
+	padding: 10px 30px 10px 15px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(../../img/form_select.png) right center no-repeat;
+    min-height: 50px;
+}
+
+.slo-common-form .form-group .dropdown > select.btn::-ms-expand{
+	display:none;
+}
+
+.slo-common-form .form-group .dropdown > select.btn:active:hover, 
+.slo-common-form .form-group .dropdown > select.btn.active:hover, 
+.slo-common-form .form-group .dropdown.open > .dropdown-toggle.btn-default:hover, 
+.slo-common-form .form-group .dropdown > select.btn:active:focus, 
+.slo-common-form .form-group .dropdown > select.btn.active:focus, 
+.slo-common-form .form-group .dropdown.open > .dropdown-toggle.btn-default:focus, 
+.slo-common-form .form-group .dropdown > select.btn:active.focus, 
+.slo-common-form .form-group .dropdown > select.btn.active.focus, 
+.slo-common-form .form-group .dropdown.open > .dropdown-toggle.btn-default.focus,
+.slo-common-form .form-group .dropdown > select.btn:hover,
+.slo-common-form .form-group .dropdown > select.btn:focus{
+    color:#999;
+    background-color: transparent;
+    border:1px solid #ccc;
+}
+.slo-common-form .form-group .dropdown > select.btn > option{
+    color:#666;
+    font-style:normal;
+}
+/*for btn case*/
+/*.slo-common-form .form-group .dropdown > select.btn > span.fa-angle-down{
+    position: absolute;
+    right: 15px;
+    font-size: 22px;
+}
+.slo-common-form .form-group .dropdown > ul.dropdown-menu{
+    width:100%;
+    border-radius:0;
+    border:1px solid #ccc;
+    border-top:none;
+    color:#111;
+    margin:0;
+}*/
+.slo-common-form .form-group section.singleDropdownContainer{
+    width:calc(50% - 20px);
+}
+ .slo-common-form .radio-group {
+   /* padding:10px 0;*/
+}
+.slo-common-form .radio-group .radio{ margin-top: 10px }
+.slo-common-form .radio-group .radio-purchase{ margin-top: 50px; margin-bottom: 0px; }
+
+    .slo-common-form .radio-group > div.radio {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+ .slo-common-form input[type=radio]{
+    /* display:none;*/
+ }
+.slo-common-form input[type=radio] + label {
+    background: url(../../img/icon-radio_unselected.svg) no-repeat;
+    padding-left: 32px;
+    font-family: 'FFDINWebMedium';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 18px;
+    padding-top:2px;
+}
+.slo-common-form input[type=radio]:checked + label {
+    background: url(../../img/icon-radio-selected.svg) no-repeat;
+}
+.slo-common-form .checkbox-group {
+    padding:10px 0;
+}
+    .slo-common-form .checkbox-group > div.checkbox {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+ /*.slo-common-form input[type=checkbox]{
+     display:none;
+ }*/
+.slo-common-form input[type=checkbox] + label {
+    background: url(../../img/Box-Unchecked.svg) no-repeat;
+    padding-left: 35px;
+    font-family: 'FFDINWeb';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+  
+}
+.slo-common-form input[type=checkbox]:checked + label {
+    background: url(../../img/Box-Checked.svg) no-repeat;
+}
+.slo-common-form .elemMarTop20{
+    margin-top:20px;
+}
+.slo-common-form .fileUploadContainer > section{
+    display:inline-table;
+    width:calc(50% - 20px);
+}
+/*.slo-common-form .fileUploadContainer > section:last-of-type{
+    padding-left:20px;
+}*/
+.slo-common-form textarea.form-control{
+    resize:none;
+    height:100px;
+    margin-top:20px;
+}
+.slo-common-form .fileUploadContainer label.slo-common-active_blue_btn {    
+    width:100%;
+}
+
+.slo-common-form .actionContainer{
+      margin-bottom:30px;
+}
+.slo-common-form .actionContainer hr{
+      margin:0
+}
+.slo-common-form .actionContainer .btn-group > .slo-common-active_blue_btn + .slo-common-active_orange_btn{
+    margin-left:20px;
+}
+/*grouping for two fields/three dropdown ends*/
+
+/*file upload*/
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+	background-color: #BDBDBD;
+	height: 200px;
+	width: 200px;
+	text-align: center;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	height: 100%;
+	text-align: center;
+}
+.custom-span{ font-family: Arial; font-weight: bold;font-size: 100px; color: #FE57A1}
+#uploadFile{border: none;margin-left: 10px; width: 200px;}
+.custom-para{font-family: arial;font-weight: bold;font-size: 24px; color:#585858;}
+/*file upload*/
+.vehicle-img-container{ margin-top: 13px; }
+.vehicle-img-container .attachVehDocImg{ margin-bottom: 13px;  }
+#vehDocRadiosOption1Area #attachVehDocImg01 {border: 1px solid #ccc;}
+
+
+
+.del-text{ font-size:14px; display: block; }
+.deleteAttachedFile .fa.fa-times{ border-radius: 100%; color: #fff; font-size: 12px; font-weight: 700; padding: 5px 6px; margin:0 5px 0 0; background: #07679b}
+.slo-common-form .fileUploadContainer > section{ margin-bottom: 5px; }
+.slo-common-form .fileUploadContainer > section label.error{ padding: 0px;  display: block;}
+
+.error-red{ border:2px solid #b02621; }
+.fileUploadContainer{   display: block; margin-left: 0;  padding: 0; }
+.deleteAttachedFile{display: inline-block;  margin: 0 0 0 5px;    right: auto; }
+.slo-common-form .fileUploadContainer .slo-common-spacings_vs3{ margin-bottom: 20px !important; margin-top: 0px;  }
+p.slo-common-spacings_vs2{ margin-bottom: -5px; }
+.slo-common-spacings_vs3{    margin-top:20px; }
+label.info.slo-common-spacings_vs3{ margin-bottom: 0px; }
+.nav-container{ padding: 13px 0; }
+.slo-common-spacings_vs2_vehicle{ margin-top: 20px; }
+.slo-common-form label[aria-labelledby="title"] > span.fa-question-circle{ font-size: 17px; margin-left:5px;  }
+.fileUploadContainer .slo-common-active_blue_btn{ padding: 10px 40px 8px }
+.vehicle-img-container{ text-align: center;  }
+.vehicle-img-container img{ display: inline-block; }
+.vehRegCardDesc{ text-align: left; }
+.fileUploadContainer .error{ float: left; padding-left: 0px; }
+
+/* Developer Comment Begin */
+#hiddenRecaptcha-error {
+    margin-top: 29px !important;
+}
+label.fileUploadedDescContainer {
+    background: #F1F1F1;
+    border: 1px solid #CCCCCC;
+    font-family: FFDINWeb;
+    font-size: 18px;
+    color: #111111;
+    letter-spacing: 0.5px;
+    line-height: 1.75;
+    padding: 5px 10px;
+    margin:0 0 20px;
+    width: 89%;
+    word-break: break-all;
+    text-align: left; 
+}
+span.deleteAttachedFile{
+    font-family: FFDINWebBold;
+    font-size: 12px;
+    color: #07679B;
+    letter-spacing: 0.33px;
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+}
+/* Developer Comment End */
+/*RESPONSIVE STYLES START*/
+@media (max-width: 991px){
+
+    .header-content .heading{ font-size: 60px; line-height: 70px; }
+    .fa.fa-question-circle{ font-size: 16px; }
+     .nav-container{ border: none;  }
+     label.fileUploadedDescContainer{ }
+
+}
+
+@media (max-width: 767px){
+    .slo-common-form .form-group.twoFieldHandler > section {
+        display: block;
+        width: 100%;
+    }
+
+        .slo-common-form .form-group.twoFieldHandler > section:first-of-type,
+        .slo-common-form .form-group.twoFieldHandler > section:last-of-type {
+            float: none;
+        }
+        .slo-common-form .form-group.twoFieldHandler > section:last-of-type label[aria-labelledby=title]{
+            margin-top:35px;
+        }
+
+    /*.slo-common-form .form-group.altFormGroup label.error {
+        float: none; 
+        width: 0px; 
+        margin-top: 0;
+        margin-left: 0px; 
+        position: none;
+        top: 0px; 
+    }*/
+
+    .slo-common-form .form-group.altFormGroup label.error {
+        float: none; 
+        width: 100%; 
+        margin-top: 34px;
+        margin-left: 0%; 
+        position: relative; 
+        top: 0px;
+    }
+
+    .slo-common-form .form-group.multiDropdownHandler > section{ width: 100%; }
+
+    .slo-common-form .form-group.multiDropdownHandler > section:first-child, 
+    .slo-common-form .form-group.multiDropdownHandler > section:nth-child(2), 
+    .slo-common-form .form-group.multiDropdownHandler > section:last-child{ padding-left: 0px; padding-right: 0px; padding-bottom: 0px; }
+    .slo-common-form .form-group.multiDropdownHandler > section:first-child, 
+    .slo-common-form .form-group.multiDropdownHandler > section:nth-child(2){ padding-bottom: 35px; }
+
+    .slo-common-form .form-group section.singleDropdownContainer{ width: 100% }
+    .slo-common-form .fileUploadContainer > section{ width: 80%; }
+    .slo-common-form .fileUploadContainer label.slo-common-active_blue_btn {     margin-top: 0px;}
+    label.fileUploadedDescContainer{ width: 83%; float: left; }
+    .header-content .heading{ font-size: 30px; line-height: normal;}
+    .nav-container{ padding: 12px 0; border: none; }
+    .nav-container img.pge_logo { height: 50px; width: 48px; }
+    .slo-common-form label[aria-labelledby=title]{  height: auto;  }
+    .form-group.multiDropdownHandler.slo-common-spacings_vs2 section{ padding-bottom: 35px; }
+    .slo-common-form .fileUploadContainer:last-child section label.btn.btn-default.slo-common-active_blue_btn.slo-common-spacings_vs3.addAttachment4_label.purchaseleaseContract_attach_label{ margin-bottom: 0px !important }
+   
+    .rc-anchor-normal{ width: 292px }
+
+    /*.deleteAttachedFile{ right: 0px; top: 42px }*/
+
+}
+
+.slo-common-form .form-group .dropdown > select.btn:focus{
+    color:#999;
+    background-color: transparent;
+    border:1px solid #66AFE9;
+}
+
+@media (max-width: 990px){
+    .slo-common-form .form-group section.singleDropdownContainer {
+        width: 100%;
+    }
+}
+
+.slo-common-modal .modal-content .heading{
+    margin: 30px 0 30px !important;
+} 
+
+.slo-common-form label.pgeAccNum, .slo-common-form label.phNum, .slo-common-form label.regStrDt, .slo-common-form label.regEndDt, .slo-common-form label.attchVehDoc{
+    padding: 0 0 10px !important;
+}
+
+ .slo-common-form .form-control {
+    border-radius: 0;
+    font-size: 18px;
+}
+
+ .vehicle-img-container p {
+    text-align: left;
+}
+
+.slo-common-form .form-group .dropdown > select.btn > option:hover {
+    background-color: #B8D7ED !important;
+    box-shadow: 0 0 10px 100px #B8D7ED inset !important;
+  }
+  .slo-common-form .form-group .dropdown > select.btn > option:focus {
+    background-color: #B8D7ED !important;
+    box-shadow: 0 0 10px 100px #B8D7ED inset !important;
+  }
+  .slo-common-form .form-group .dropdown > select.btn > option:active {
+    background-color: #B8D7ED !important;
+    box-shadow: 0 0 10px 100px #B8D7ED inset !important;
+  }
+  .slo-common-form .form-group .dropdown > select.btn > option:checked {
+    background-color: #B8D7ED !important;
+  }
+
+  .slo-common-form label[aria-labelledby=title]{
+      /*display:inline-table;*/
+       display:inline-block;
+  }
+
+  .slo-common-form label[aria-labelledby=title] > a > span.fa.fa-question-circle{
+      color:#00517A;
+      padding-left:5px;
+  }
+  
+   .slo-common-form a > span.fa.fa-question-circle{
+      color:#00517A;
+      padding-left:5px;
+      
+  }
+  
+  
+.slo-common-form label[aria-labelledby=title] + label.info{
+    line-height: 1;
+}
+                
+/*a.ui-state-default.ui-state-highlight{
+    border: 1px solid #005179 !important;
+    background: #005179 !important;
+    font-weight: normal !important;
+    color: #fff !important;
+}*/
+
+.slo-common-form > .form-group > section.radio-group > fieldset > .radio:last-child{
+    margin-bottom: 0;
+}
+
+
+
+.slo-common-form .vehicle-img-container #purch_contract_attachment_03 label.slo-common-spacings_vs3{
+    margin-bottom: 0px !important;
+}
+                  
+.twoFieldHandler label.regDtLabel{
+  margin-top: 0 !important;
+}

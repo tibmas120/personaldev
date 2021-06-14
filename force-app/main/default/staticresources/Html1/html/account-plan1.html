@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Salesforce</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  <!--  <script src="js/bootstrap-datepicker.min.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid padding-bottom100 grey-bg">
+        <form action="" method="post" class="opp-win-form">
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 columns">
+                    <h1 class="main-head">Account Plan</h1>
+                </div>
+                <div class="col-xs-12 col-sm-5 columns">
+                    <ul class="list-inline wizard">
+                        <li><a href="account-plan1.html" class="circle active">1</a></li>
+                        <li><span class="mid-line"></span><a href="account-plan2.html" class="circle">2</a></li>
+                        <li><span class="mid-line"></span><a href="account-plan3.html" class="circle">3</a></li>
+                        <li><span class="mid-line"></span><a href="account-plan4.html" class="circle">4</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="opp-win-section blue-bg account-blue">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="account-n" class="quest-head white-font">Account Name</label>
+                            <input type="text" id="account-n" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="account-owner" class="quest-head white-font">Account Owner</label>
+                            <input type="text" id="account-owner" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="account-plan-year" class="quest-head white-font">Account Plan Year</label>
+                            <div class="input-group date datepick">
+                                <input type="text" class="form-control" id="account-plan-year" placeholder="DD/MM/YYYY"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <label for="account-lifecycle-stage" class="quest-head white-font">Account Lifecycle Stage</label>
+                        <div class="form-group">
+                            <select class="form-control" id="account-lifecycle-stage">
+                                <option value="1">Select</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <label for="position-completion" class="quest-head white-font">Position vs. Completion</label>
+                        <div class="form-group">
+                            <select class="form-control" id="position-completion">
+                                <option value="1">Select</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="account-type" class="quest-head white-font">Type of Account</label>
+                            <input type="text" id="account-type" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="revenue-growth" class="quest-head white-font">Revenue Growth Last Year (%)</label>
+                            <input type="text" id="revenue-growth" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="projected-growth" class="quest-head white-font">Projected Growth – Plan Year (%)</label>
+                            <input type="text" id="projected-growth" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="asset-share" class="quest-head white-font">Equipment / Asset Share (%)</label>
+                            <input type="text" id="asset-share" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="services-share" class="quest-head white-font">Services Share (%)</label>
+                            <input type="text" id="services-share" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <label for="account-satisfication" class="quest-head white-font">Account Satisfaction (1-10)</label>
+                        <div class="form-group">
+                            <select class="form-control" id="position-completion">
+                                <option value="1">Select</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 columns">
+                        <div class="form-group">
+                            <label for="lead-service-tech" class="quest-head white-font">Lead Service Tech (as applicable)</label>
+                            <input type="text" id="lead-service-tech" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="white-content account-white">
+                <div class="form-group">
+                    <label for="account-overview-business" class="acc-label">Account Overview and Key Business Drivers, Initiatives &amp; Challenges</label>
+                    <textarea id="account-overview-business"></textarea>
+                    <span class="pull-right max-char">1000 Characters</span>
+                </div>
+                <div class="form-group">
+                    <label for="account-history" class="acc-label">Account History – Including Previous Issues and Perceptions</label>
+                    <textarea id="account-history"></textarea>
+                    <span class="pull-right max-char">1000 Characters</span>
+                </div>
+                <div class="form-group">
+                    <label for="customer-buying-decision" class="acc-label">General Customer Buying and / or Decision Making Process</label>
+                    <textarea id="customer-buying-decision"></textarea>
+                    <span class="pull-right max-char">2000 Characters</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer class="sticky-footer">
+        <div class="col-xs-12 columns">
+            <div class="col-xs-12 col-centered action-btns">
+                <a href="#" class="btn btn-primary">Save</a>
+                <a href="#" class="btn btn-secondary">Cancel</a>
+            </div>
+            <a href="account-plan2.html" class="btn btn-secondary pull-right next-btn"><i class="glyphicon glyphicon-menu-right visible-xs"></i><span class="hidden-xs">Next</span></a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿.nav-container {
+    background-color: #f1f1f1;
+    border-bottom:50px solid #005179;
+    padding: 10px 0 16px;
+}
+.nav-container.slo-common-container{
+    margin-top:0;
+}
+.nav-container img.pge_logo{
+    width:57px;
+    height:60px;
+}

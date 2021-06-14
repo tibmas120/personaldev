@@ -1,0 +1,15 @@
+<apex:page sidebar="false" showHeader="false" controller="forgotpassword">
+<apex:form >
+<apex:pageBlock >
+<apex:pageMessages ></apex:pageMessages> 
+<apex:pageBlockSection title="Forgot Password">
+<br>Email Id<apex:inputText value="{!emailId}"/></br>
+<br>Secret Question<apex:selectList value="{!secQues}" multiselect="false" size="1">
+            <apex:selectOptions value="{!questions}"/>
+        </apex:selectList></br>
+<br>Answer<apex:inputsecret value="{!secAns}"/></br>
+<apex:commandButton value="Submit" action="{!verify}"/>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>
