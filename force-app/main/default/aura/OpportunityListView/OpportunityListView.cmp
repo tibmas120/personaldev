@@ -1,0 +1,26 @@
+<aura:component controller="opptycmpController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+    <aura:attribute name="lstopportunity" type="opportunity[]" />
+    <aura:attribute name="columnsToDisply" type="List" />
+    <aura:attribute name="searchKeyword" type="string" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <lightning:card iconname="standard:opportunity" title="Opportunity List">
+
+    <lightning:layout>
+        <lightning:layoutItem size="3" padding="around-small">
+            <lightning:input aura:id="searchField"
+                             label="Opportunity Name"
+                             value="{!v.searchKeyword}"
+                             placeholders="Search Opportunity"
+                             onchange="{!c.searchoppty}" />
+
+        </lightning:layoutItem>
+    </lightning:layout>
+
+    <lightning:datatable data="{!v.lstopportunity}" 
+                        columns="{!v.columnsToDisply}"
+                        keyField="id"
+                        hidecheckboxcolumn="true"/>
+    </lightning:card>
+</aura:component> 	 
