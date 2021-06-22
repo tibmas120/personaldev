@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-m-around_large">
+        <h1>My 2nd LWC</h1>
+        <lightning-input label="Birth Day Msg" required value={inputText} onchange={handleclick}></lightning-input>
+        <p>
+            {birthdate}
+        </p>
+        <p>
+            {inputText}
+        </p>
+        <p>
+            <lightning-button label="click Me" value="clickMe" onclick={buttonclick}></lightning-button>
+        </p>
+    </div>
+    <div class="slds-m-around_large">
+        <template if:true={result} for:each={result} for:item="con" for:index="index">
+           <li key={con.Id}>
+                {con.Name}
+           </li>
+        </template>
+    </div>
+</template>

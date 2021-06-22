@@ -1,0 +1,16 @@
+<template>
+
+    <div class="slds-m-around_small">
+        <lightning-record-form 
+            object-api-name={objectApiName} 
+            record-id={recordId}
+            layout-type="Full" 
+            columns="2" 
+            mode="edit"
+            onerrror={handleerror} 
+            onsuccess={handlesuccess} 
+            onsubmit={handlesubmit}>
+        </lightning-record-form>
+    </div>
+    
+</template>

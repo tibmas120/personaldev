@@ -1,0 +1,30 @@
+<template>
+
+    <div class="slds-m-around_x-large slds-align_absolute-center">
+        <lightning-input label="search" value={inputText}></lightning-input>
+        <br/>
+    </div>
+    <div class="slds-m-around_x-large slds-align_absolute-center">   
+        <lightning-button label="Get Accounts" value="GetAccounts" onclick={searchAccount}></lightning-button>
+        <lightning-button label="Clear Accounts" value="ClearAccounts" onclick={clearAccount}></lightning-button>
+    </div>
+    <br/>
+    <div class="slds-grid_align-center slds-col slds-size_1-of-3">
+
+        <template if:true={accountList} for:each={accountList} for:item="acc" for:index="index">
+            <lightning-layout-item size="3" key={acc.Id}>
+            <lightning-card  variant="Narrow"  title={acc.Name} icon-name="standard:account"></lightning-card>
+            Industry: {acc.Industry}
+            <br/>
+            Rating: {acc.Rating}
+            <br/>
+            Website: {acc.Website}
+            <br/>
+            Revenue($): {acc.AnnualRevenue}   
+        </lightning-layout-item>
+        </template>
+
+
+    </div>
+    
+</template>

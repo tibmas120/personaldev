@@ -1,0 +1,63 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner variant="brand" size="large" alternative-text="Please wait..."></lightning-spinner>
+    </template>
+    
+    <div class="slds-card">
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="Latitude" value={latitude} onchange={handleLatitudeChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="Longtitide" value={longtitude} onchange={handleLongtitudeChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-button variant="brand" label="Query Address" title="Query Address" onclick={handleQueryAddressClick} class="slds-m-left_x-small"></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        {queryAddressResult}
+        <!-- Coordinates by Address -->
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="addressLine" value={addressLine} onchange={handleAddressLineChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="countryRegion" value={countryRegion} onchange={handleCountryRegionChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="locality" value={locality} onchange={handleLocalityChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="postalCode" value={postalCode} onchange={handlePostalCodeChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-button variant="brand" label="Query Coordinates" title="Query Coordinates" onclick={handleQueryCoordinatesClick} class="slds-m-left_x-small"></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        {queryCoordinatesResult}
+    
+        <!-- Driving Distance by Coordinates -->
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="fromLatitude" value={fromLatitude} onchange={handleDrivingDistanceInputChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="fromLongtitude" value={fromLongtitude} onchange={handleDrivingDistanceInputChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="toLatitude" value={toLatitude} onchange={handleDrivingDistanceInputChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="toLongtitude" value={toLongtitude} onchange={handleDrivingDistanceInputChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="text" label="distanceUnit" value={distanceUnit} onchange={handleDrivingDistanceInputChange}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <lightning-button variant="brand" label="Query Driving Distance" title="Query Driving Distance" onclick={handleQueryDrivingDistanceClick} class="slds-m-left_x-small"></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        {queryDistanceResult}
+    
+    </div>
+    </template>

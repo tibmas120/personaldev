@@ -1,6 +1,6 @@
 public with sharing class MapController {
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
    public static List<Map__c> getLocation(id locId)
    {
       List<Map__c> lct = [Select Id,
