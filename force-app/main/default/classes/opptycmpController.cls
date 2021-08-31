@@ -1,4 +1,3 @@
-
 public with sharing class opptycmpController {
     @auraEnabled
     public static List<opportunity> fetchoppty(string searchoppty){

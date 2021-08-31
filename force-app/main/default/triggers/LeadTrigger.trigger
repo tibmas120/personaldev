@@ -1,6 +1,5 @@
 trigger LeadTrigger on Lead (after undelete, before delete) {
 
-	//Hi from VS 
 	set<ID> 		cIds	= new set<ID>();
 	List<String> 	apIds	= new List<String>();
 	List<ActionPlan__c>	deletePermantently_apIds= new List<ActionPlan__c>();	

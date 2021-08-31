@@ -1,0 +1,13 @@
+<aura:component>
+    <aura:attribute name="id" type="Integer" />
+    <aura:attribute name="message" type="string" default="none"/>
+    <aura:handler event="c:LightningApplicationEvent" action="{!c.handleApplicationEvent}" phase="bubble" />
+    <div>
+        <br/>
+        Event Container id ={!v.id}
+        <br/>
+        Message in Event Container = {!v.message}
+        <br/>
+        <c:LightningAppComp1 id="{!v.id}" />
+    </div>
+</aura:component>

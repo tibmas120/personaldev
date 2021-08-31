@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>One_To_One</fullName>
+    <active>true</active>
+    <errorConditionFormula>MasterCheck__r.Count_Detail__c==1  &amp;&amp;  ISNEW()</errorConditionFormula>
+    <errorMessage>One To One Relation ship</errorMessage>
+</ValidationRule>

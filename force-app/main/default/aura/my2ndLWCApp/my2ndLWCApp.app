@@ -1,5 +1,6 @@
 <aura:application extends="force:slds">
 
-    <c:my2ndLWC/>
+    <c:accountList/>
+    <!--<c:navigationsambit/>-->
 
-</aura:application>	
+</aura:application>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_interest__c</fullName>
+    <externalId>false</externalId>
+    <label>Secondary interest</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fantasy</fullName>
+                <default>false</default>
+                <label>Fantasy</label>
+            </value>
+            <value>
+                <fullName>fiction</fullName>
+                <default>false</default>
+                <label>fiction</label>
+            </value>
+            <value>
+                <fullName>management</fullName>
+                <default>false</default>
+                <label>management</label>
+            </value>
+            <value>
+                <fullName>modern art</fullName>
+                <default>false</default>
+                <label>modern art</label>
+            </value>
+            <value>
+                <fullName>paint</fullName>
+                <default>false</default>
+                <label>paint</label>
+            </value>
+            <value>
+                <fullName>crayon</fullName>
+                <default>false</default>
+                <label>crayon</label>
+            </value>
+            <value>
+                <fullName>pencil shading</fullName>
+                <default>false</default>
+                <label>pencil shading</label>
+            </value>
+            <value>
+                <fullName>classical</fullName>
+                <default>false</default>
+                <label>classical</label>
+            </value>
+            <value>
+                <fullName>rock</fullName>
+                <default>false</default>
+                <label>rock</label>
+            </value>
+            <value>
+                <fullName>pop</fullName>
+                <default>false</default>
+                <label>pop</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>
